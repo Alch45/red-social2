@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login/Signup Form - ComuniTec</title>
+  <link rel="stylesheet" href="/css/inicio.css" />
+   <link rel="icon" type="image/png" href="img/favicon.png">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="container">
+    <!-- Formulario de Login -->
+    <div class="form-box login">
+      <form id="loginForm">
+        <h1>Comunitec</h1>
+        <h3>Iniciar Sesión</h3>
+        <div class="input-box">
+          <input type="text" id="loginUsername" placeholder="Usuario" required />
+          <i class="bx bxs-user"></i>
+        </div>
+        <div class="input-box">
+          <input type="password" id="loginPassword" placeholder="Contraseña" required />
+          <i class="bx bxs-lock-alt"></i>
+        </div>
+        <div class="forgot-link">
+          <a href="#">¿Olvidaste Tu Contraseña?</a>
+        </div>
+        <button type="submit" class="btn">Iniciar Sesión</button>
+        <div id="loginMessage" class="message"></div>
+        <div class="admin-access-link">
+    <a href="/admin/index.html" class="admin-link">
+        <i class="bx bx-shield-quarter"></i>
+        Acceso Administradores
+    </a>
+</div>
+      </form>
+    </div>
+
+    <!-- Formulario de Registro -->
+    <div class="form-box register">
+      <form id="registerForm">
+        <h1>Registro</h1>
+        <div class="input-box">
+          <input type="text" id="regUsername" placeholder="Usuario" required />
+          <i class="bx bxs-user"></i>
+        </div>
+        <div class="input-box">
+          <input type="email" id="regEmail" placeholder="Correo institucional" required />
+          <i class="bx bxs-envelope"></i>
+        </div>
+        <div class="input-box">
+          <input type="password" id="regPassword" placeholder="Contraseña" required />
+          <i class="bx bxs-lock-alt"></i>
+        </div>
+        <div class="input-box">
+          <input type="password" id="regConfirmPassword" placeholder="Confirmar contraseña" required />
+          <i class="bx bxs-lock-alt"></i>
+        </div>
+        <div class="terms-box">
+          <input type="checkbox" id="termsCheckbox" required />
+          <label for="termsCheckbox">
+            Acepto los <a href="terminos.html" target="_blank" class="terms-link">términos y condiciones</a>
+          </label>
+        </div>
+        <button type="submit" class="btn">Registrar</button>
+        <div id="registerMessage" class="message"></div>
+      </form>
+    </div>
+
+    <div class="toggle-box">
+      <div class="toggle-panel toggle-left">
+        <div class="logo-container">
+          <img src="img/logoitsce.png" alt="Logo ITSCE">
+        </div>
+        <h1>Bienvenido a Comunitec</h1>
+        <p>¿No tienes una cuenta?</p>
+        <button class="btn register-btn">Regístrate</button>
+      </div>
+      <div class="toggle-panel toggle-right">
+        <div class="logo-container">
+          <img src="img/logoitsce.png" alt="Logo ITSCE">
+        </div>
+        <h1>¡Bienvenido!</h1>
+        <p>¿Ya tienes una cuenta?</p>
+        <button class="btn login-btn">Inicia Sesión</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="javascript/inicio.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+/* instructor_form.css */
+.return {
+    width: 30px;
+    height: 30px;
+    margin-right: 15px;
+    cursor: pointer;
+}
+body {
+    background-color: #f4f7f6; /* Fondo gris claro suave */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.card {
+    border: none;
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.card-header {
+    background-color: #007bff !important; /* Azul primario de Bootstrap */
+    padding: 1.5rem 1rem;
+}
+
+.card-header h3 {
+    margin: 0;
+    font-weight: 600;
+}
+
+h4 {
+    color: #343a40; /* Título oscuro */
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+hr {
+    border-top: 2px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+}
+
+/* Estilo para las secciones de lecciones añadidas */
+.lesson-card {
+    border: 1px solid #ced4da;
+    transition: all 0.2s ease-in-out;
+}
+
+.lesson-card .card-body {
+    padding: 1.5rem;
+}
+
+.lesson-card .card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+/* Ajuste para los inputs flotantes de Bootstrap */
+.form-floating > label {
+    padding: 1rem 0.75rem;
+}
+
+.form-floating > .form-control {
+    height: calc(3.5rem + 2px);
+}

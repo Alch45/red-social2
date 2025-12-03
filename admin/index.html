@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Login - ComuniTec</title>
+    <link rel="stylesheet" href="css/inicio.css" />
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <style>
+        /* Estilos específicos para el login de administrador centrado */
+        body {
+            background: linear-gradient(135deg, #8B0000 0%, #B22222 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .admin-login-container {
+            width: 100%;
+            max-width: 450px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .admin-header {
+            background: linear-gradient(135deg, #8B0000 0%, #B22222 100%);
+            padding: 40px 30px 30px;
+            text-align: center;
+            color: white;
+        }
+
+        .admin-header .logo-container {
+            margin-bottom: 20px;
+        }
+
+        .admin-header .logo-container img {
+            background-color: white;
+            width: 100px;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .admin-header h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+            color: #ffffff;
+        }
+
+        .admin-header h2 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            opacity: 0.9;
+            margin-bottom: 0;
+        }
+
+        .admin-badge {
+            background: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .admin-form-content {
+            padding: 40px 30px;
+        }
+
+        .input-box {
+            position: relative;
+            margin: 25px 0;
+        }
+
+        .input-box input {
+            width: 80%;
+            padding: 15px 50px 15px 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border: 2px solid #e9ecef;
+            outline: none;
+            font-size: 1rem;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .input-box input:focus {
+            border-color: #8B0000;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(139, 0, 0, 0.1);
+        }
+
+        .input-box i {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        .input-box input:focus+i {
+            color: #8B0000;
+        }
+
+        .admin-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #8B0000, #B22222);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3);
+        }
+
+        .admin-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 0, 0, 0.4);
+        }
+
+        .admin-features {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 25px 0;
+            border-left: 4px solid #8B0000;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            color: #495057;
+            font-size: 14px;
+        }
+
+        .feature-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .feature-item i {
+            color: #8B0000;
+            font-size: 16px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #6c757d;
+            text-decoration: none;
+            font-size: 14px;
+            margin-top: 20px;
+            transition: color 0.3s ease;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .back-link:hover {
+            color: #8B0000;
+        }
+
+        .security-notice {
+            background: #fff3cd;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border: 1px solid #ffeaa7;
+        }
+
+        .security-notice p {
+            font-size: 12px;
+            color: #856404;
+            margin: 0;
+            line-height: 1.4;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .message {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            text-align: center;
+            display: none;
+            animation: fadeInUp 0.3s ease-out;
+        }
+
+        .message.success {
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid #a7f3d0;
+            display: block;
+        }
+
+        .message.error {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
+            display: block;
+        }
+
+        .message.info {
+            background: #dbeafe;
+            color: #1e40af;
+            border: 1px solid #93c5fd;
+            display: block;
+        }
+
+        /* Loading spinner */
+        .admin-btn.loading {
+            position: relative;
+            color: transparent;
+        }
+
+        .admin-btn.loading::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            top: 50%;
+            left: 50%;
+            margin: -10px 0 0 -10px;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            border-top: 2px solid transparent;
+            animation: spin 1s linear infinite;
+        }
+        .auth-method-selector {
+    display: flex;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.auth-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+    justify-content: center;
+}
+
+.auth-option:hover {
+    background: #e9ecef;
+}
+
+.auth-option input[type="radio"] {
+    margin: 0;
+}
+
+.security-options {
+    margin: 15px 0;
+}
+
+.security-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 8px 0;
+}
+
+.security-option input[type="checkbox"] {
+    margin: 0;
+}
+
+.access-level {
+    margin: 20px 0;
+}
+
+.access-level label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #495057;
+}
+
+.access-level select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    background: #f8f9fa;
+    font-size: 1rem;
+}
+
+.access-level select:focus {
+    border-color: #8B0000;
+    outline: none;
+}
+
+.enhanced-auth-fields {
+    animation: fadeIn 0.3s ease;
+}
+
+.key-info, .code-info {
+    margin-top: 8px;
+    font-size: 0.8rem;
+    color: #6c757d;
+}
+
+.btn-secondary {
+    width: 100%;
+    padding: 12px;
+    background: #6c757d;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.btn-secondary:hover {
+    background: #5a6268;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .admin-form-content form {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @media screen and (max-width: 500px) {
+            .admin-login-container {
+                max-width: 100%;
+            }
+
+            .admin-header {
+                padding: 30px 20px 25px;
+            }
+
+            .admin-form-content {
+                padding: 30px 20px;
+            }
+
+            .admin-header h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="admin-login-container">
+        <div class="admin-header">
+            <div class="logo-container">
+                <img src="/img/logoitsce.png" alt="Logo ITSCE">
+            </div>
+            <h1>ComuniTec <span class="admin-badge">ADMIN</span></h1>
+            <h2>Panel de Administración</h2>
+        </div>
+
+        <div class="admin-form-content">
+            <form id="adminLoginForm">
+                <div class="input-box">
+                    <input type="email" id="adminEmail" placeholder="Correo institucional" required />
+                    <i class="bx bxs-envelope"></i>
+                </div>
+
+                <div class="input-box">
+                    <input type="password" id="adminPassword" placeholder="Contraseña de administrador" required />
+                    <i class="bx bxs-lock-alt"></i>
+                </div>
+                <div class="security-options">
+                    <label class="security-option">
+                        <input type="checkbox" id="enhancedSecurity">
+                        <span>Autenticación reforzada</span>
+                    </label>
+                </div>
+
+                <div class="enhanced-auth-fields" style="display: none;">
+                    <div class="input-box">
+                        <input type="password" id="accessKey" placeholder="Llave de seguridad" />
+                        <i class="bx bx-key"></i>
+                    </div>
+
+                    <div class="key-info">
+                        <small>Esta llave fue proporcionada durante la configuración de su cuenta de
+                            administrador</small>
+                    </div>
+                </div>
+
+                <div class="admin-features">
+                    <div class="feature-item">
+                        <i class="bx bx-shield-quarter"></i>
+                        <span>Moderación de contenido</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="bx bx-user-check"></i>
+                        <span>Gestión de usuarios</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="bx bx-chart"></i>
+                        <span>Estadísticas de la plataforma</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="bx bx-cog"></i>
+                        <span>Configuración del sistema</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="admin-btn">Acceder al Panel</button>
+
+                <div class="security-notice">
+                    <p><i class="bx bx-info-circle"></i> Acceso exclusivo para personal autorizado. Actividades
+                        monitoreadas.</p>
+                </div>
+
+                <a href="/index.html" class="back-link">
+                    <i class="bx bx-arrow-back"></i>
+                    Volver al login de usuarios
+                </a>
+
+                <div id="adminMessage" class="message"></div>
+            </form>
+        </div>
+    </div>
+<script src="js/index.js"></script>
+</body>
+
+</html>

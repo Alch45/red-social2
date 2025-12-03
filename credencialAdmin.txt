@@ -1,0 +1,3 @@
+admin@itsce.edu.mx
+password: 'Admin123!',
+acesskey:CTEC-2024-ADMIN-KEY

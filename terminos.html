@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Términos y Condiciones - ComuniTec</title>
+    <script src="javascript/auth.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f3f4f6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .terms-container {
+            max-width: 800px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            border: 1px solid #e5e7eb;
+        }
+
+        .terms-header {
+            background: linear-gradient(135deg, #006699 0%, #004d73 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 102, 153, 0.3);
+        }
+
+        .terms-header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .terms-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+
+        .terms-content {
+            padding: 40px;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+
+        .terms-section {
+            margin-bottom: 30px;
+        }
+
+        .terms-section h2 {
+            color: #006699;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            border-bottom: 2px solid #e6f3ff;
+            padding-bottom: 8px;
+        }
+
+        .terms-section p {
+            margin-bottom: 15px;
+            text-align: justify;
+            color: #4b5563;
+            font-weight: 400;
+        }
+
+        .terms-section ul {
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+
+        .terms-section li {
+            margin-bottom: 10px;
+            color: #4b5563;
+            font-weight: 400;
+        }
+
+        .back-button {
+            display: block;
+            width: 220px;
+            margin: 30px auto 0;
+            padding: 14px 25px;
+            background: linear-gradient(135deg, #006699 0%, #004d73 100%);
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 102, 153, 0.3);
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 102, 153, 0.4);
+        }
+
+        /* Scrollbar personalizado que coincide con tu diseño */
+        .terms-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .terms-content::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 4px;
+        }
+
+        .terms-content::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        .terms-content::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        /* Estilos responsivos */
+        @media (max-width: 768px) {
+            .terms-container {
+                margin: 20px;
+            }
+            
+            .terms-content {
+                padding: 25px;
+            }
+            
+            .terms-header {
+                padding: 25px 20px;
+            }
+            
+            .terms-header h1 {
+                font-size: 2rem;
+            }
+            
+            .back-button {
+                width: 100%;
+                max-width: 280px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            body {
+                padding: 10px;
+            }
+            
+            .terms-container {
+                margin: 10px;
+            }
+            
+            .terms-content {
+                padding: 20px;
+                max-height: 75vh;
+            }
+            
+            .terms-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .terms-section h2 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="terms-container">
+        <div class="terms-header">
+            <h1>📜 Términos y Condiciones</h1>
+            <p>ComuniTec - Plataforma Educativa</p>
+        </div>
+        
+        <div class="terms-content">
+            <div class="terms-section">
+                <h2>1. Aceptación de los Términos</h2>
+                <p>Al acceder y utilizar ComuniTec, aceptas cumplir con estos términos y condiciones. Si no estás de acuerdo con alguna parte de estos términos, no podrás utilizar nuestros servicios.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+
+            <div class="terms-section">
+                <h2>2. Uso de la Plataforma</h2>
+                <p>ComuniTec está diseñada para facilitar la comunicación y colaboración entre estudiantes y profesores. El uso debe ser responsable y respetuoso:</p>
+                <ul>
+                    <li>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris</li>
+                    <li>Duis aute irure dolor in reprehenderit in voluptate velit esse</li>
+                    <li>Excepteur sint occaecat cupidatat non proident, sunt in culpa</li>
+                    <li>Qui officia deserunt mollit anim id est laborum</li>
+                </ul>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
+            </div>
+
+            <div class="terms-section">
+                <h2>3. Cuentas de Usuario</h2>
+                <p>Para acceder a todas las funcionalidades de ComuniTec, debes crear una cuenta con tu correo institucional:</p>
+                <p>Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+            </div>
+
+            <div class="terms-section">
+                <h2>4. Propiedad Intelectual</h2>
+                <p>Todo el contenido publicado en ComuniTec está protegido por derechos de autor y propiedad intelectual:</p>
+                <ul>
+                    <li>Ullamco laboris nisi ut aliquip ex ea commodo consequat</li>
+                    <li>Duis aute irure dolor in reprehenderit in voluptate velit</li>
+                    <li>Esse cillum dolore eu fugiat nulla pariatur excepteur sint</li>
+                </ul>
+            </div>
+
+            <div class="terms-section">
+                <h2>5. Privacidad y Protección de Datos</h2>
+                <p>Respetamos tu privacidad y protegemos tus datos personales según la legislación aplicable:</p>
+                <p>Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+            </div>
+
+            <div class="terms-section">
+                <h2>6. Limitación de Responsabilidad</h2>
+                <p>ComuniTec no se hace responsable por:</p>
+                <ul>
+                    <li>Ut enim ad minim veniam, quis nostrud exercitation</li>
+                    <li>Duis aute irure dolor in reprehenderit in voluptate</li>
+                    <li>Excepteur sint occaecat cupidatat non proident</li>
+                </ul>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
+            </div>
+
+            <div class="terms-section">
+                <h2>7. Modificaciones de los Términos</h2>
+                <p>Nos reservamos el derecho de modificar estos términos en cualquier momento. Las actualizaciones serán notificadas a los usuarios.</p>
+            </div>
+
+            <div class="terms-section">
+                <h2>8. Ley Aplicable y Jurisdicción</h2>
+                <p>Estos términos se rigen por las leyes mexicanas. Cualquier disputa será resuelta en los tribunales competentes de la Ciudad de México.</p>
+            </div>
+
+            <button class="back-button" onclick="window.close()">Cerrar y Aceptar</button>
+        </div>
+    </div>
+
+    <script>
+        // Mejorar la experiencia de cierre
+        document.querySelector('.back-button').addEventListener('click', function() {
+            if (window.opener) {
+                // Si se abrió desde el formulario, cerrar ventana
+                window.close();
+            } else {
+                // Si se abrió directamente, volver atrás
+                window.history.back();
+            }
+        });
+
+        // Agregar funcionalidad de tecla Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                if (window.opener) {
+                    window.close();
+                } else {
+                    window.history.back();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

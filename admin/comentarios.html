@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comentarios Reportados - ComuniTec Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --admin-primary: #8B0000;
+            --admin-secondary: #B22222;
+            --admin-light: #FFF5F5;
+            --admin-dark: #5A0000;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background-color: #f8fafc;
+            color: #334155;
+        }
+        
+        .admin-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            min-height: 100vh;
+        }
+        
+        /* Sidebar */
+        .admin-sidebar {
+            background: linear-gradient(180deg, var(--admin-primary) 0%, var(--admin-dark) 100%);
+            color: white;
+            padding: 0;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        }
+        
+        .admin-brand {
+            padding: 25px 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+        }
+        
+        .admin-brand h1 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+        
+        .admin-brand span {
+            background: rgba(255,255,255,0.2);
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        
+        .admin-nav {
+            padding: 20px 0;
+        }
+        
+        .nav-section {
+            margin-bottom: 25px;
+        }
+        
+        .nav-section h3 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            padding: 0 20px 10px;
+            color: rgba(255,255,255,0.7);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+        }
+        
+        .nav-item:hover, .nav-item.active {
+            background: rgba(255,255,255,0.1);
+            border-left-color: white;
+            color: white;
+        }
+        
+        .nav-item i {
+            margin-right: 12px;
+            font-size: 1.2rem;
+        }
+        
+        .nav-badge {
+            margin-left: auto;
+            background: var(--admin-secondary);
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        
+        /* Main Content */
+        .admin-main {
+            padding: 0;
+            overflow-y: auto;
+        }
+        
+        .admin-header {
+            background: white;
+            padding: 20px 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .admin-title h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1e293b;
+        }
+        
+        .admin-title p {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        
+        .admin-actions {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .admin-btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            border: none;
+        }
+        
+        .btn-primary {
+            background: var(--admin-primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: var(--admin-dark);
+        }
+        
+        .btn-secondary {
+            background: #f1f5f9;
+            color: #475569;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .btn-secondary:hover {
+            background: #e2e8f0;
+        }
+        
+        /* Dashboard Content */
+        .dashboard-content {
+            padding: 30px;
+        }
+        
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .stat-value {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--admin-primary);
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #64748b;
+            font-weight: 600;
+        }
+        
+        /* Filters Section */
+        .filters-section {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+        }
+        
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .filter-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #475569;
+        }
+        
+        .filter-select {
+            padding: 10px 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            background: white;
+        }
+        
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--admin-primary);
+            box-shadow: 0 0 0 3px rgba(139, 0, 0, 0.1);
+        }
+        
+        /* Reported Comments Container */
+        .reported-comments-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .reported-comment {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s;
+        }
+        
+        .reported-comment:hover {
+            border-color: var(--admin-primary);
+            box-shadow: 0 4px 12px rgba(139, 0, 0, 0.1);
+        }
+        
+        .reported-comment.urgent {
+            border-left: 4px solid #ef4444;
+        }
+        
+        .reported-comment.high {
+            border-left: 4px solid #f59e0b;
+        }
+        
+        .reported-comment.medium {
+            border-left: 4px solid #3b82f6;
+        }
+        
+        .reported-comment.low {
+            border-left: 4px solid #10b981;
+        }
+        
+        /* Comment Header */
+        .comment-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        
+        .comment-user {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--admin-primary), var(--admin-secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: white;
+            font-size: 1rem;
+        }
+        
+        .user-info h4 {
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 4px;
+        }
+        
+        .user-info p {
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+        
+        .comment-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 8px;
+        }
+        
+        .comment-date {
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+        
+        .priority-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .priority-urgent {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+        
+        .priority-high {
+            background: #fef3c7;
+            color: #d97706;
+        }
+        
+        .priority-medium {
+            background: #dbeafe;
+            color: #2563eb;
+        }
+        
+        .priority-low {
+            background: #d1fae5;
+            color: #059669;
+        }
+        
+        /* Parent Post */
+        .parent-post {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 3px solid var(--admin-primary);
+        }
+        
+        .parent-post-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+        
+        .parent-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+        
+        .parent-info h5 {
+            font-weight: 600;
+            color: #374151;
+            font-size: 0.9rem;
+        }
+        
+        .parent-info p {
+            font-size: 0.7rem;
+            color: #64748b;
+        }
+        
+        .parent-content {
+            font-size: 0.9rem;
+            color: #475569;
+            line-height: 1.4;
+        }
+        
+        /* Comment Content */
+        .comment-content {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        
+        .comment-content::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 15px;
+            width: 0;
+            height: 0;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            border-right: 8px solid #e2e8f0;
+        }
+        
+        .comment-content::after {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 15px;
+            width: 0;
+            height: 0;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            border-right: 8px solid white;
+        }
+        
+        .comment-text {
+            line-height: 1.5;
+            color: #374151;
+            font-size: 0.9rem;
+        }
+        
+        /* Reports Section */
+        .reports-section {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .reports-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .reports-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #1e293b;
+        }
+        
+        .reports-count {
+            background: var(--admin-primary);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        
+        .report-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .report-item:last-child {
+            border-bottom: none;
+        }
+        
+        .report-reason {
+            font-weight: 500;
+            color: #374151;
+            font-size: 0.85rem;
+        }
+        
+        .report-count {
+            background: #f1f5f9;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #475569;
+        }
+        
+        /* Comment Actions */
+        .comment-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .comment-btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .btn-delete {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+        
+        .btn-delete:hover {
+            background: #fecaca;
+        }
+        
+        .btn-warn {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        
+        .btn-warn:hover {
+            background: #fde68a;
+        }
+        
+        .btn-approve {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        
+        .btn-approve:hover {
+            background: #a7f3d0;
+        }
+        
+        .btn-ignore {
+            background: #f1f5f9;
+            color: #475569;
+        }
+        
+        .btn-ignore:hover {
+            background: #e2e8f0;
+        }
+        
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+        
+        .pagination-btn {
+            padding: 8px 12px;
+            border: 1px solid #e2e8f0;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .pagination-btn:hover {
+            background: #f1f5f9;
+        }
+        
+        .pagination-btn.active {
+            background: var(--admin-primary);
+            color: white;
+            border-color: var(--admin-primary);
+        }
+        
+        .pagination-info {
+            font-size: 0.8rem;
+            color: #64748b;
+            margin: 0 15px;
+        }
+        
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #64748b;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .empty-state i {
+            font-size: 3rem;
+            color: #cbd5e1;
+            margin-bottom: 20px;
+        }
+        
+        .empty-state h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #475569;
+        }
+        
+        .empty-state p {
+            font-size: 0.9rem;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="admin-brand">
+                <h1>ComuniTec <span>ADMIN</span></h1>
+                <p>Panel de Control</p>
+            </div>
+            
+            <nav class="admin-nav">
+                <div class="nav-section">
+                    <h3>Principal</h3>
+                    <a href="dashboard.html" class="nav-item">
+                        <i class='bx bx-home-alt'></i>
+                        Dashboard
+                    </a>
+                    <a href="estadisticas.html" class="nav-item">
+                        <i class='bx bx-stats'></i>
+                        Estadísticas
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <h3>Moderación</h3>
+                    <a href="reportedpublics.html" class="nav-item">
+                        <i class='bx bx-flag'></i>
+                        Publicaciones Reportadas
+                        <span class="nav-badge">12</span>
+                    </a>
+                    <a href="reportedcoments.html" class="nav-item active">
+                        <i class='bx bx-comment-dots'></i>
+                        Comentarios Reportados
+                        <span class="nav-badge">5</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <h3>Gestión de Usuarios</h3>
+                    <a href="newusers.html" class="nav-item">
+                        <i class='bx bx-user-plus'></i>
+                        Nuevos Usuarios
+                        <span class="nav-badge">8</span>
+                    </a>
+                    <a href="allusers.html" class="nav-item">
+                        <i class='bx bx-group'></i>
+                        Todos los Usuarios
+                    </a>
+                    <a href="suspendedusers.html" class="nav-item">
+                        <i class='bx bx-user-x'></i>
+                        Usuarios Suspendidos
+                        <span class="nav-badge">3</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <h3>Contenido</h3>
+                    <a href="eventos.html" class="nav-item">
+                        <i class='bx bx-calendar-event'></i>
+                        Gestión de Eventos
+                    </a>
+                    <a href="allpublish.html" class="nav-item">
+                        <i class='bx bx-message-square'></i>
+                        Todas las Publicaciones
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <h3>Sistema</h3>
+                    <a href="configadmin.html" class="nav-item">
+                        <i class='bx bx-cog'></i>
+                        Configuración
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class='bx bx-shield-quarter'></i>
+                        Seguridad
+                    </a>
+                    <a href="index.html" class="nav-item">
+                        <i class='bx bx-log-out'></i>
+                        Cerrar Sesión
+                    </a>
+                </div>
+            </nav>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="admin-main">
+            <header class="admin-header">
+                <div class="admin-title">
+                    <h1>Comentarios Reportados</h1>
+                    <p>Modera los comentarios inapropiados reportados por la comunidad</p>
+                </div>
+                <div class="admin-actions">
+                    <button class="admin-btn btn-secondary">
+                        <i class='bx bx-export'></i>
+                        Exportar Reportes
+                    </button>
+                    <button class="admin-btn btn-primary">
+                        <i class='bx bx-filter-alt'></i>
+                        Filtros Avanzados
+                    </button>
+                </div>
+            </header>
+            
+            <div class="dashboard-content">
+                <!-- Quick Stats -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value">5</div>
+                        <div class="stat-label">Pendientes de revisión</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">12</div>
+                        <div class="stat-label">Total reportados hoy</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">3</div>
+                        <div class="stat-label">Usuarios reincidentes</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">85%</div>
+                        <div class="stat-label">Tasa de resolución</div>
+                    </div>
+                </div>
+                
+                <!-- Filters Section -->
+                <div class="filters-section">
+                    <div class="filters-grid">
+                        <div class="filter-group">
+                            <label class="filter-label">Prioridad</label>
+                            <select class="filter-select">
+                                <option value="">Todas las prioridades</option>
+                                <option value="urgent">Urgente</option>
+                                <option value="high">Alta</option>
+                                <option value="medium">Media</option>
+                                <option value="low">Baja</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">Tipo de Reporte</label>
+                            <select class="filter-select">
+                                <option value="">Todos los tipos</option>
+                                <option value="harassment">Acoso</option>
+                                <option value="spam">Spam</option>
+                                <option value="hate">Discurso de odio</option>
+                                <option value="inappropriate">Inapropiado</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">Estado</label>
+                            <select class="filter-select">
+                                <option value="">Todos los estados</option>
+                                <option value="pending">Pendiente</option>
+                                <option value="reviewed">Revisado</option>
+                                <option value="resolved">Resuelto</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Reported Comments Container -->
+                <div class="reported-comments-container">
+                    <!-- Comment 1 - Urgent -->
+                    <div class="reported-comment urgent">
+                        <div class="comment-header">
+                            <div class="comment-user">
+                                <div class="user-avatar">J</div>
+                                <div class="user-info">
+                                    <h4>Juan Pérez</h4>
+                                    <p>Ingeniería en Sistemas • 3 reportes anteriores</p>
+                                </div>
+                            </div>
+                            <div class="comment-meta">
+                                <span class="comment-date">Hace 45 minutos</span>
+                                <span class="priority-badge priority-urgent">Urgente</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Parent Post -->
+                        <div class="parent-post">
+                            <div class="parent-post-header">
+                                <div class="parent-avatar">M</div>
+                                <div class="parent-info">
+                                    <h5>María González</h5>
+                                    <p>Publicado: "¿Alguien tiene apuntes de Cálculo III?"</p>
+                                </div>
+                            </div>
+                            <div class="parent-content">
+                                <p>Hola comunidad, estoy buscando apuntes de Cálculo III para preparar el examen final. ¿Alguien podría compartir sus notas?</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Comment Content -->
+                        <div class="comment-content">
+                            <div class="comment-text">
+                                <p>Si no puedes con Cálculo III, mejor déjalo. La ingeniería no es para cualquiera, especialmente no para gente sin capacidad. Deberías cambiarte a una carrera más fácil.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Reports -->
+                        <div class="reports-section">
+                            <div class="reports-header">
+                                <h4 class="reports-title">Motivos de reporte</h4>
+                                <span class="reports-count">8 reportes</span>
+                            </div>
+                            <div class="report-item">
+                                <span class="report-reason">Acoso e intimidación</span>
+                                <span class="report-count">5</span>
+                            </div>
+                            <div class="report-item">
+                                <span class="report-reason">Discurso de odio</span>
+                                <span class="report-count">3</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Actions -->
+                        <div class="comment-actions">
+                            <button class="comment-btn btn-delete">
+                                <i class='bx bx-trash'></i>
+                                Eliminar comentario
+                            </button>
+                            <button class="comment-btn btn-warn">
+                                <i class='bx bx-user-x'></i>
+                                Suspender usuario
+                            </button>
+                            <button class="comment-btn btn-ignore">
+                                <i class='bx bx-check'></i>
+                                Ignorar reportes
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Comment 2 - High Priority -->
+                    <div class="reported-comment high">
+                        <div class="comment-header">
+                            <div class="comment-user">
+                                <div class="user-avatar">C</div>
+                                <div class="user-info">
+                                    <h4>Carlos Ruiz</h4>
+                                    <p>Administración • Primer reporte</p>
+                                </div>
+                            </div>
+                            <div class="comment-meta">
+                                <span class="comment-date">Hace 2 horas</span>
+                                <span class="priority-badge priority-high">Alta</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Parent Post -->
+                        <div class="parent-post">
+                            <div class="parent-post-header">
+                                <div class="parent-avatar">A</div>
+                                <div class="parent-info">
+                                    <h5>Ana Martínez</h5>
+                                    <p>Publicado: "Vendo libros de semestres anteriores"</p>
+                                </div>
+                            </div>
+                            <div class="parent-content">
+                                <p>Estoy vendiendo mis libros de los primeros 4 semestres de ingeniería. Todos en buen estado. Precio negociable.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Comment Content -->
+                        <div class="comment-content">
+                            <div class="comment-text">
+                                <p>Yo también vendo apuntes y exámenes pasados de TODAS las materias. WhatsApp: 555-1234. También hago trabajos y tareas por encargo. 💰📚</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Reports -->
+                        <div class="reports-section">
+                            <div class="reports-header">
+                                <h4 class="reports-title">Motivos de reporte</h4>
+                                <span class="reports-count">5 reportes</span>
+                            </div>
+                            <div class="report-item">
+                                <span class="report-reason">Spam comercial</span>
+                                <span class="report-count">3</span>
+                            </div>
+                            <div class="report-item">
+                                <span class="report-reason">Contenido inapropiado</span>
+                                <span class="report-count">2</span>
+                            </div>
+                        </div>
+                        
+                        <div class="comment-actions">
+                            <button class="comment-btn btn-delete">
+                                <i class='bx bx-trash'></i>
+                                Eliminar comentario
+                            </button>
+                            <button class="comment-btn btn-warn">
+                                <i class='bx bx-user-voice'></i>
+                                Advertir usuario
+                            </button>
+                            <button class="comment-btn btn-ignore">
+                                <i class='bx bx-check'></i>
+                                Ignorar reportes
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Comment 3 - Medium Priority -->
+                    <div class="reported-comment medium">
+                        <div class="comment-header">
+                            <div class="comment-user">
+                                <div class="user-avatar">L</div>
+                                <div class="user-info">
+                                    <h4>Laura Díaz</h4>
+                                    <p>Derecho • Sin reportes anteriores</p>
+                                </div>
+                            </div>
+                            <div class="comment-meta">
+                                <span class="comment-date">Hace 5 horas</span>
+                                <span class="priority-badge priority-medium">Media</span>
+                            </div>
+                        </div>
+                        
+                        <div class="parent-post">
+                            <div class="parent-post-header">
+                                <div class="parent-avatar">R</div>
+                                <div class="parent-info">
+                                    <h5>Roberto Sánchez</h5>
+                                    <p>Publicado: "Opiniones sobre el nuevo reglamento"</p>
+                                </div>
+                            </div>
+                            <div class="parent-content">
+                                <p>¿Qué opinan sobre las nuevas reglas de la biblioteca? Me parece que limitan mucho el acceso de los estudiantes.</p>
+                            </div>
+                        </div>
+                        <div class="comment-content">
+                            <div class="comment-text">
+                                <p>El problema no son las reglas, son estudiantes como tú que no saben comportarse. Si no te gusta, mejor vete a otra universidad.</p>
+                            </div>
+                        </div>
+                        <div class="reports-section">
+                            <div class="reports-header">
+                                <h4 class="reports-title">Motivos de reporte</h4>
+                                <span class="reports-count">3 reportes</span>
+                            </div>
+                            <div class="report-item">
+                                <span class="report-reason">Falta de respeto</span>
+                                <span class="report-count">3</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Actions -->
+                        <div class="comment-actions">
+                            <button class="comment-btn btn-delete">
+                                <i class='bx bx-trash'></i>
+                                Eliminar comentario
+                            </button>
+                            <button class="comment-btn btn-warn">
+                                <i class='bx bx-user-voice'></i>
+                                Advertir usuario
+                            </button>
+                            <button class="comment-btn btn-approve">
+                                <i class='bx bx-check-circle'></i>
+                                Aprobar comentario
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="pagination">
+                    <button class="pagination-btn">
+                        <i class='bx bx-chevron-left'></i>
+                    </button>
+                    <button class="pagination-btn active">1</button>
+                    <button class="pagination-btn">2</button>
+                    <button class="pagination-btn">3</button>
+                    <span class="pagination-info">de 3 páginas</span>
+                    <button class="pagination-btn">
+                        <i class='bx bx-chevron-right'></i>
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

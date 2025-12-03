@@ -1,0 +1,239 @@
+ * {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+ }
+
+ body {
+     background-color: #f5f7fa;
+     color: #333;
+     line-height: 1.6;
+ }
+
+ /* Header */
+ .header-main {
+     background-color: #2c3e50;
+     color: white;
+     padding: 15px 0;
+     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+     position: fixed;
+     width: 100%;
+     top: 0;
+     z-index: 1000;
+ }
+
+ .header-container {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     max-width: 1200px;
+     margin: 0 auto;
+     padding: 0 20px;
+ }
+
+ .logo-container {
+     display: flex;
+     align-items: center;
+ }
+
+ .return {
+     width: 30px;
+     height: 30px;
+     margin-right: 15px;
+     cursor: pointer;
+ }
+
+ .logo-text {
+     font-size: 1.5rem;
+     font-weight: 700;
+ }
+
+
+ .eventos-oficiales {
+    margin-left: 30px;
+     max-width: 1400px;
+     padding: 30px;
+     background: white;
+     border-radius: 12px;
+     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+     position: relative;
+ }
+
+ .eventos-privados h2 {
+     color: #2d3748;
+     font-size: 2rem;
+     margin-bottom: 30px;
+     text-align: center;
+     font-weight: 600;
+ }
+
+
+
+
+ @keyframes fadeIn {
+     from {
+         opacity: 0;
+         transform: translateY(-10px);
+     }
+
+     to {
+         opacity: 1;
+         transform: translateY(0);
+     }
+ }
+
+ .create-event-menu h3 {
+     color: #2d3748;
+     margin-bottom: 20px;
+     font-size: 1.3rem;
+     text-align: center;
+ }
+
+ .form-evento {
+     display: flex;
+     flex-direction: column;
+     gap: 15px;
+ }
+
+ .form-evento input,
+ .form-evento textarea,
+ .form-evento select {
+     width: 100%;
+     padding: 12px 15px;
+     margin: 0;
+     border: 2px solid #e2e8f0;
+     border-radius: 8px;
+     font-size: 14px;
+     transition: all 0.3s ease;
+ }
+
+ .form-evento input:focus,
+ .form-evento textarea:focus,
+ .form-evento select:focus {
+     outline: none;
+     border-color: #4299e1;
+     box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+ }
+
+ .form-evento textarea {
+     min-height: 100px;
+     resize: vertical;
+ }
+
+ .form-evento button {
+     background: #4299e1;
+     color: white;
+     border: none;
+     padding: 12px 25px;
+     border-radius: 8px;
+     font-size: 16px;
+     font-weight: 500;
+     cursor: pointer;
+     transition: background 0.3s ease;
+     margin-top: 10px;
+ }
+
+ .form-evento button:hover {
+     background: #3182ce;
+ }
+
+ /* Lista de eventos */
+ .lista-eventos h3 {
+     color: #2d3748;
+     margin-bottom: 20px;
+     font-size: 1.5rem;
+ }
+
+ .evento-card {
+     background: white;
+     padding: 20px;
+     margin: 15px 0;
+     border-radius: 10px;
+     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+     border: 1px solid #e2e8f0;
+     transition: transform 0.2s ease, box-shadow 0.2s ease;
+ }
+
+ .evento-card:hover {
+     transform: translateY(-2px);
+     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+ }
+
+ .evento-card h4 {
+     color: #2d3748;
+     margin-bottom: 15px;
+     font-size: 1.2rem;
+ }
+
+ .evento-card p {
+     margin: 8px 0;
+     color: #4a5568;
+     display: flex;
+     align-items: center;
+     gap: 8px;
+ }
+
+ .evento-card button {
+     background: #48bb78;
+     color: white;
+     border: none;
+     padding: 8px 16px;
+     border-radius: 6px;
+     margin-right: 10px;
+     margin-top: 10px;
+     cursor: pointer;
+     font-size: 14px;
+     transition: background 0.3s ease;
+ }
+
+ .evento-card button:last-child {
+     background: #ed8936;
+ }
+
+ .evento-card button:hover {
+     opacity: 0.9;
+     transform: translateY(-1px);
+ }
+
+ .lista-eventos:empty::before {
+     content: "Aún no has creado ningún evento";
+     display: block;
+     text-align: center;
+     color: #a0aec0;
+     padding: 40px;
+     font-style: italic;
+ }
+
+ /* Overlay para cerrar menú al hacer clic fuera */
+ .overlay {
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     background: transparent;
+     z-index: 5;
+     display: none;
+ }
+
+ .overlay.active {
+     display: block;
+ }
+
+ /* Responsive */
+ @media (max-width: 768px) {
+     .eventos-privados {
+         margin: 100px 15px 20px;
+         padding: 20px;
+     }
+
+     .create-event-menu {
+         width: calc(100% - 40px);
+         right: 20px;
+     }
+
+     .evento-card {
+         padding: 15px;
+     }
+ }

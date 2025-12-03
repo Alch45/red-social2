@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración - ComuniTec</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="admin-brand">
+                <h1>ComuniTec <span>ADMIN</span></h1>
+                <p>Panel de Control</p>
+            </div>
+            
+            <nav class="admin-nav">
+                <div class="nav-section">
+                    <h3>Principal</h3>
+                    <a href="#" class="nav-item active">
+                        <i class='bx bx-home-alt'></i>
+                        Dashboard
+                    </a>
+                    <a href="estadisticas.html" class="nav-item">
+                        <i class='bx bx-stats'></i>
+                        Estadísticas
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <h3>Moderación</h3>
+                    <a href="reportedpublics.html" class="nav-item">
+                        <i class='bx bx-flag'></i>
+                        Publicaciones Reportadas
+                        <span class="nav-badge">12</span>
+                    </a>
+                    <a href="reportedcoments.html" class="nav-item">
+                        <i class='bx bx-comment-dots'></i>
+                        Comentarios Reportados
+                        <span class="nav-badge">5</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <h3>Gestión de Usuarios</h3>
+                    <a href="newusers.html" class="nav-item">
+                        <i class='bx bx-user-plus'></i>
+                        Nuevos Usuarios
+                        <span class="nav-badge">8</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class='bx bx-group'></i>
+                        Todos los Usuarios
+                    </a>
+                    <a href="suspendedusers.html" class="nav-item">
+                        <i class='bx bx-user-x'></i>
+                        Usuarios Suspendidos
+                        <span class="nav-badge">3</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <h3>Contenido</h3>
+                    <a href="eventos.html" class="nav-item">
+                        <i class='bx bx-calendar-event'></i>
+                        Gestión de Eventos
+                    </a>
+                    <!-- <a href="#" class="nav-item">
+                        <i class='bx bx-category'></i>
+                        Categorías y Etiquetas
+                    </a> -->
+                    <a href="allpublish.html" class="nav-item">
+                        <i class='bx bx-message-square'></i>
+                        Todas las Publicaciones
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <h3>Sistema</h3>
+                    <a href="configadmin.html" class="nav-item">
+                        <i class='bx bx-cog'></i>
+                        Configuración
+                    </a>
+                    <!-- <a href="#" class="nav-item">
+                        <i class='bx bx-shield-quarter'></i>
+                        Seguridad
+                    </a> -->
+                    <a href="index.html" class="nav-item">
+                        <i class='bx bx-log-out'></i>
+                        Cerrar Sesión
+                    </a>
+                </div>
+            </nav>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="admin-main">
+            <header class="admin-header">
+                <div class="admin-title">
+                    <h1>Dashboard de Administración</h1>
+                    <p>Bienvenido al panel de control de ComuniTec</p>
+                </div>
+                <div class="admin-actions">
+                    <button class="admin-btn btn-secondary">
+                        <i class='bx bx-download'></i>
+                        Exportar Reporte
+                    </button>
+                    <!-- <button class="admin-btn btn-primary">
+                        <i class='bx bx-plus'></i>
+                        Crear Evento
+                    </button> -->
+                </div>
+            </header>
+            
+            <div class="dashboard-content">
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-title">Usuarios Activos</div>
+                            <div class="stat-icon primary">
+                                <i class='bx bx-user'></i>
+                            </div>
+                        </div>
+                        <div class="stat-value">1,248</div>
+                        <div class="stat-change positive">
+                            <i class='bx bx-up-arrow-alt'></i>
+                            5.2% desde la semana pasada
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card warning">
+                        <div class="stat-header">
+                            <div class="stat-title">Reportes Pendientes</div>
+                            <div class="stat-icon warning">
+                                <i class='bx bx-flag'></i>
+                            </div>
+                        </div>
+                        <div class="stat-value">17</div>
+                        <div class="stat-change negative">
+                            <i class='bx bx-down-arrow-alt'></i>
+                            2.1% desde ayer
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card danger">
+                        <div class="stat-header">
+                            <div class="stat-title">Publicaciones Eliminadas</div>
+                            <div class="stat-icon danger">
+                                <i class='bx bx-trash'></i>
+                            </div>
+                        </div>
+                        <div class="stat-value">24</div>
+                        <div class="stat-change positive">
+                            <i class='bx bx-up-arrow-alt'></i>
+                            12.5% este mes
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card success">
+                        <div class="stat-header">
+                            <div class="stat-title">Eventos Activos</div>
+                            <div class="stat-icon success">
+                                <i class='bx bx-calendar'></i>
+                            </div>
+                        </div>
+                        <div class="stat-value">8</div>
+                        <div class="stat-change positive">
+                            <i class='bx bx-up-arrow-alt'></i>
+                            3 nuevos esta semana
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Content Grid -->
+                <div class="content-grid">
+                    <!-- Left Column -->
+                    <div class="left-column">
+                        <!-- Reported Posts -->
+                        <div class="content-section">
+                            <div class="section-header">
+                                <h2 class="section-title">Publicaciones Reportadas</h2>
+                                <div class="section-actions">
+                                    <button class="section-action">
+                                        <i class='bx bx-filter'></i>
+                                        Filtrar
+                                    </button>
+                                    <button class="section-action">
+                                        <i class='bx bx-dots-vertical-rounded'></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="reported-post">
+                                <div class="post-header">
+                                    <div class="user-avatar">A</div>
+                                    <div class="user-info">
+                                        <h4>Ana García</h4>
+                                        <p>Ingeniería de Software • Hace 2 horas</p>
+                                    </div>
+                                </div>
+                                <div class="post-content">
+                                    <p>¿Alguien más está batallando con la Tarea 4 de Cálculo Avanzado? ¡Necesito un grupo de estudio urgente! 📚</p>
+                                </div>
+                                <div class="post-tags">
+                                    <span class="post-tag">#Cálculo</span>
+                                    <span class="post-tag">#GrupoEstudio</span>
+                                </div>
+                                <div class="post-actions">
+                                    <button class="post-btn btn-approve">Aprobar</button>
+                                    <button class="post-btn btn-delete">Eliminar</button>
+                                    <button class="post-btn btn-warn">Advertir Usuario</button>
+                                </div>
+                            </div>
+                            
+                            <div class="reported-post">
+                                <div class="post-header">
+                                    <div class="user-avatar">M</div>
+                                    <div class="user-info">
+                                        <h4>Marco Flores</h4>
+                                        <p>Administración de Empresas • Hace 5 horas</p>
+                                    </div>
+                                </div>
+                                <div class="post-content">
+                                    <p>¡Hola comunidad! Estoy vendiendo mangos con chile caseros 🥭🌶️</p>
+                                    <p>• Paquete pequeño: $25<br>• Paquete grande: $40</p>
+                                </div>
+                                <div class="post-tags">
+                                    <span class="post-tag">#Emprendimiento</span>
+                                    <span class="post-tag">#Comida</span>
+                                </div>
+                                <div class="post-actions">
+                                    <button class="post-btn btn-approve">Aprobar</button>
+                                    <button class="post-btn btn-delete">Eliminar</button>
+                                    <button class="post-btn btn-warn">Advertir Usuario</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Event Management -->
+                        <div class="content-section">
+                            <div class="section-header">
+                                <h2 class="section-title">Crear Nuevo Evento</h2>
+                            </div>
+                            
+                            <form class="event-form">
+                                <div class="form-group">
+                                    <label for="eventTitle">Título del Evento</label>
+                                    <input type="text" id="eventTitle" class="form-control" placeholder="Ej: Hackathon de Programación 2024">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="eventDate">Fecha y Hora</label>
+                                    <input type="datetime-local" id="eventDate" class="form-control">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="eventDescription">Descripción</label>
+                                    <textarea id="eventDescription" class="form-control" rows="3" placeholder="Describe el evento..."></textarea>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="eventCategory">Categoría</label>
+                                    <select id="eventCategory" class="form-control">
+                                        <option value="">Selecciona una categoría</option>
+                                        <option value="academico">Académico</option>
+                                        <option value="cultural">Cultural</option>
+                                        <option value="deportivo">Deportivo</option>
+                                        <option value="tecnologico">Tecnológico</option>
+                                        <option value="social">Social</option>
+                                    </select>
+                                </div>
+                                
+                                <button type="submit" class="admin-btn btn-primary">
+                                    <i class='bx bx-calendar-plus'></i>
+                                    Publicar Evento
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Column -->
+                    <div class="right-column">
+                        <!-- New Users -->
+                        <div class="content-section">
+                            <div class="section-header">
+                                <h2 class="section-title">Nuevos Usuarios</h2>
+                                <div class="section-actions">
+                                    <button class="section-action">
+                                        <i class='bx bx-dots-vertical-rounded'></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="new-user">
+                                <div class="user-details">
+                                    <h4>Carlos Mendoza</h4>
+                                    <p>Ing. Sistemas Computacionales</p>
+                                    <p class="activity-time">Registrado hace 2 horas</p>
+                                </div>
+                                <div class="user-actions">
+                                    <button class="user-btn btn-verify">
+                                        <i class='bx bx-check'></i>
+                                    </button>
+                                    <button class="user-btn btn-block">
+                                        <i class='bx bx-block'></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="new-user">
+                                <div class="user-details">
+                                    <h4>Laura Hernández</h4>
+                                    <p>Lic. Administración</p>
+                                    <p class="activity-time">Registrado hace 5 horas</p>
+                                </div>
+                                <div class="user-actions">
+                                    <button class="user-btn btn-verify">
+                                        <i class='bx bx-check'></i>
+                                    </button>
+                                    <button class="user-btn btn-block">
+                                        <i class='bx bx-block'></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="new-user">
+                                <div class="user-details">
+                                    <h4>Diego Ramirez</h4>
+                                    <p>Ing. Mecatrónica</p>
+                                    <p class="activity-time">Registrado hace 1 día</p>
+                                </div>
+                                <div class="user-actions">
+                                    <button class="user-btn btn-verify">
+                                        <i class='bx bx-check'></i>
+                                    </button>
+                                    <button class="user-btn btn-block">
+                                        <i class='bx bx-block'></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Recent Activity -->
+                        <div class="content-section">
+                            <div class="section-header">
+                                <h2 class="section-title">Actividad Reciente</h2>
+                            </div>
+                            
+                            <div class="activity-item">
+                                <div class="activity-icon report">
+                                    <i class='bx bx-flag'></i>
+                                </div>
+                                <div class="activity-details">
+                                    <p>Nuevo reporte en publicación de Ana García</p>
+                                    <p class="activity-time">Hace 15 minutos</p>
+                                </div>
+                            </div>
+                            
+                            <div class="activity-item">
+                                <div class="activity-icon user">
+                                    <i class='bx bx-user-plus'></i>
+                                </div>
+                                <div class="activity-details">
+                                    <p>Nuevo usuario registrado: Carlos Mendoza</p>
+                                    <p class="activity-time">Hace 2 horas</p>
+                                </div>
+                            </div>
+                            
+                            <div class="activity-item">
+                                <div class="activity-icon event">
+                                    <i class='bx bx-calendar'></i>
+                                </div>
+                                <div class="activity-details">
+                                    <p>Evento "Feria de TICs" publicado</p>
+                                    <p class="activity-time">Hace 1 día</p>
+                                </div>
+                            </div>
+                            
+                            <div class="activity-item">
+                                <div class="activity-icon system">
+                                    <i class='bx bx-cog'></i>
+                                </div>
+                                <div class="activity-details">
+                                    <p>Backup del sistema completado</p>
+                                    <p class="activity-time">Hace 1 día</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

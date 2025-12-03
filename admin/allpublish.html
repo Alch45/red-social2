@@ -1,0 +1,1558 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todas las Publicaciones - ComuniTec Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --admin-primary: #8B0000;
+            --admin-secondary: #B22222;
+            --admin-light: #FFF5F5;
+            --admin-dark: #5A0000;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background-color: #f8fafc;
+            color: #334155;
+        }
+        
+        .admin-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            min-height: 100vh;
+        }
+        
+        /* Sidebar */
+        .admin-sidebar {
+            background: linear-gradient(180deg, var(--admin-primary) 0%, var(--admin-dark) 100%);
+            color: white;
+            padding: 0;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        }
+        
+        .admin-brand {
+            padding: 25px 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+        }
+        
+        .admin-brand h1 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+        
+        .admin-brand span {
+            background: rgba(255,255,255,0.2);
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        
+        .admin-nav {
+            padding: 20px 0;
+        }
+        
+        .nav-section {
+            margin-bottom: 25px;
+        }
+        
+        .nav-section h3 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            padding: 0 20px 10px;
+            color: rgba(255,255,255,0.7);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+        }
+        
+        .nav-item:hover, .nav-item.active {
+            background: rgba(255,255,255,0.1);
+            border-left-color: white;
+            color: white;
+        }
+        
+        .nav-item i {
+            margin-right: 12px;
+            font-size: 1.2rem;
+        }
+        
+        .nav-badge {
+            margin-left: auto;
+            background: var(--admin-secondary);
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        
+        /* Main Content */
+        .admin-main {
+            padding: 0;
+            overflow-y: auto;
+        }
+        
+        .admin-header {
+            background: white;
+            padding: 20px 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .admin-title h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1e293b;
+        }
+        
+        .admin-title p {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        
+        .admin-actions {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .admin-btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            border: none;
+        }
+        
+        .btn-primary {
+            background: var(--admin-primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: var(--admin-dark);
+        }
+        
+        .btn-secondary {
+            background: #f1f5f9;
+            color: #475569;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .btn-secondary:hover {
+            background: #e2e8f0;
+        }
+        
+        .btn-success {
+            background: #10b981;
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background: #059669;
+        }
+        
+        .btn-warning {
+            background: #f59e0b;
+            color: white;
+        }
+        
+        .btn-warning:hover {
+            background: #d97706;
+        }
+        
+        .btn-danger {
+            background: #ef4444;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+        
+        /* Dashboard Content */
+        .dashboard-content {
+            padding: 30px;
+        }
+        
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--admin-primary);
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #64748b;
+            font-weight: 600;
+        }
+        
+        /* Filters Section */
+        .filters-section {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .search-box {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 12px 45px 12px 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #64748b;
+        }
+        
+        .filter-select {
+            padding: 12px 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            background: white;
+            min-width: 180px;
+        }
+        
+        /* Posts Grid */
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .post-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+        
+        .post-card:hover {
+            border-color: var(--admin-primary);
+            box-shadow: 0 8px 25px rgba(139, 0, 0, 0.1);
+        }
+        
+        .post-card.reported {
+            border-left: 4px solid #ef4444;
+        }
+        
+        .post-card.popular {
+            border-left: 4px solid #f59e0b;
+        }
+        
+        .post-card.normal {
+            border-left: 4px solid #10b981;
+        }
+        
+        .post-header {
+            padding: 20px;
+            background: linear-gradient(135deg, var(--admin-light), white);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--admin-primary), var(--admin-secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: white;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        
+        .user-info h4 {
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 4px;
+            font-size: 1rem;
+        }
+        
+        .user-details {
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+        
+        .post-date {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            margin-top: 4px;
+        }
+        
+        .post-body {
+            padding: 20px;
+        }
+        
+        .post-content {
+            color: #475569;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            max-height: 100px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .post-content.expanded {
+            max-height: none;
+        }
+        
+        .read-more {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, white);
+            text-align: center;
+            padding-top: 20px;
+            cursor: pointer;
+            color: var(--admin-primary);
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+        
+        .post-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .post-tag {
+            background: #f1f5f9;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: #475569;
+            font-weight: 500;
+        }
+        
+        .post-stats {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-top: 1px solid #f1f5f9;
+            border-bottom: 1px solid #f1f5f9;
+            margin-bottom: 20px;
+        }
+        
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+        
+        .stat-item i {
+            font-size: 1rem;
+        }
+        
+        .post-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .post-btn {
+            flex: 1;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        
+        .btn-view {
+            background: #dbeafe;
+            color: #1d4ed8;
+        }
+        
+        .btn-view:hover {
+            background: #bfdbfe;
+        }
+        
+        .btn-edit {
+            background: #f3e8ff;
+            color: #7c3aed;
+        }
+        
+        .btn-edit:hover {
+            background: #e9d5ff;
+        }
+        
+        .btn-delete {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+        
+        .btn-delete:hover {
+            background: #fecaca;
+        }
+        
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            background: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+            transform: translateX(150%);
+            transition: transform 0.3s ease;
+            max-width: 400px;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .notification.success {
+            border-left: 4px solid #10b981;
+        }
+        
+        .notification.error {
+            border-left: 4px solid #ef4444;
+        }
+        
+        .notification.info {
+            border-left: 4px solid #3b82f6;
+        }
+        
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+        
+        .modal-overlay.show {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: modalSlideIn 0.3s ease;
+        }
+        
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .modal-header {
+            padding: 25px 30px;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #1e293b;
+        }
+        
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #64748b;
+            line-height: 1;
+        }
+        
+        .modal-body {
+            padding: 30px;
+        }
+        
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #64748b;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            grid-column: 1 / -1;
+        }
+        
+        .empty-state i {
+            font-size: 3rem;
+            color: #cbd5e1;
+            margin-bottom: 20px;
+        }
+        
+        .empty-state h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #475569;
+        }
+        
+        .empty-state p {
+            font-size: 0.9rem;
+            max-width: 400px;
+            margin: 0 auto 20px;
+        }
+        
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+        
+        .pagination-btn {
+            padding: 8px 12px;
+            border: 1px solid #e2e8f0;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .pagination-btn:hover {
+            background: #f1f5f9;
+        }
+        
+        .pagination-btn.active {
+            background: var(--admin-primary);
+            color: white;
+            border-color: var(--admin-primary);
+        }
+        
+        .pagination-info {
+            font-size: 0.8rem;
+            color: #64748b;
+            margin: 0 15px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .posts-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .post-actions {
+                flex-wrap: wrap;
+            }
+            
+            .post-btn {
+                min-width: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="admin-brand">
+                <h1>ComuniTec <span>ADMIN</span></h1>
+                <p>Panel de Control</p>
+            </div>
+            
+            <nav class="admin-nav">
+                <div class="nav-section">
+                    <h3>Principal</h3>
+                    <a href="dashboard.html" class="nav-item">
+                        <i class='bx bx-home-alt'></i>
+                        Dashboard
+                    </a>
+                    <a href="estadisticas.html" class="nav-item">
+                        <i class='bx bx-stats'></i>
+                        Estadísticas
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <h3>Moderación</h3>
+                    <a href="reportedpublics.html" class="nav-item">
+                        <i class='bx bx-flag'></i>
+                        Publicaciones Reportadas
+                    </a>
+                    <a href="reportedcoments.html" class="nav-item">
+                        <i class='bx bx-comment-dots'></i>
+                        Comentarios Reportados
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <h3>Gestión de Usuarios</h3>
+                    <a href="newusers.html" class="nav-item">
+                        <i class='bx bx-user-plus'></i>
+                        Nuevos Usuarios
+                    </a>
+                    <a href="allusers.html" class="nav-item">
+                        <i class='bx bx-group'></i>
+                        Todos los Usuarios
+                    </a>
+                    <a href="suspendedusers.html" class="nav-item">
+                        <i class='bx bx-user-x'></i>
+                        Suspendidos
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <h3>Contenido</h3>
+                    <a href="eventos.html" class="nav-item">
+                        <i class='bx bx-calendar-event'></i>
+                        Gestión de Eventos
+                    </a>
+                    <a href="allpublish.html" class="nav-item active">
+                        <i class='bx bx-message-square'></i>
+                        Todas las Publicaciones
+                        <span class="nav-badge" id="postsBadge">24</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <h3>Sistema</h3>
+                    <a href="configadmin.html" class="nav-item">
+                        <i class='bx bx-cog'></i>
+                        Configuración
+                    </a>
+                    <!-- <a href="#" class="nav-item">
+                        <i class='bx bx-shield-quarter'></i>
+                        Seguridad
+                    </a> -->
+                    <a href="index.html" class="nav-item">
+                        <i class='bx bx-log-out'></i>
+                        Cerrar Sesión
+                    </a>
+                </div>
+            </nav>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="admin-main">
+            <header class="admin-header">
+                <div class="admin-title">
+                    <h1>Todas las Publicaciones</h1>
+                    <p>Administra y modera todas las publicaciones de la comunidad</p>
+                </div>
+                <div class="admin-actions">
+                    <button class="admin-btn btn-secondary" id="refreshBtn">
+                        <i class='bx bx-refresh'></i>
+                        Actualizar
+                    </button>
+                    <button class="admin-btn btn-primary" id="newPostBtn">
+                        <i class='bx bx-plus'></i>
+                        Nueva Publicación
+                    </button>
+                </div>
+            </header>
+            
+            <div class="dashboard-content">
+                <!-- Quick Stats -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalPosts">24</div>
+                        <div class="stat-label">Total Publicaciones</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="todayPosts">8</div>
+                        <div class="stat-label">Hoy</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="reportedPosts">3</div>
+                        <div class="stat-label">Reportadas</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="popularPosts">12</div>
+                        <div class="stat-label">Populares</div>
+                    </div>
+                </div>
+                
+                <!-- Search and Filters -->
+                <div class="filters-section">
+                    <div class="search-box">
+                        <input type="text" class="search-input" id="searchInput" 
+                               placeholder="Buscar publicaciones por contenido, usuario o etiquetas...">
+                        <i class='bx bx-search search-icon'></i>
+                    </div>
+                    
+                    <select class="filter-select" id="typeFilter">
+                        <option value="">Todos los tipos</option>
+                        <option value="normal">Normal</option>
+                        <option value="reported">Reportadas</option>
+                        <option value="popular">Populares</option>
+                    </select>
+                    
+                    <select class="filter-select" id="dateFilter">
+                        <option value="">Cualquier fecha</option>
+                        <option value="today">Hoy</option>
+                        <option value="week">Esta semana</option>
+                        <option value="month">Este mes</option>
+                    </select>
+                    
+                    <select class="filter-select" id="sortFilter">
+                        <option value="newest">Más recientes</option>
+                        <option value="oldest">Más antiguas</option>
+                        <option value="popular">Más populares</option>
+                        <option value="reported">Más reportadas</option>
+                    </select>
+                </div>
+                
+                <!-- Posts Grid -->
+                <div class="posts-grid" id="postsGrid">
+                    <!-- Las publicaciones se cargarán dinámicamente -->
+                </div>
+                
+                <!-- Pagination -->
+                <div class="pagination">
+                    <button class="pagination-btn" id="prevPage">
+                        <i class='bx bx-chevron-left'></i>
+                    </button>
+                    <button class="pagination-btn active">1</button>
+                    <button class="pagination-btn">2</button>
+                    <button class="pagination-btn">3</button>
+                    <span class="pagination-info">de 5 páginas</span>
+                    <button class="pagination-btn" id="nextPage">
+                        <i class='bx bx-chevron-right'></i>
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Post Details Modal -->
+    <div class="modal-overlay" id="postModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalPostTitle">Detalles de la Publicación</h3>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body" id="modalPostBody">
+                <!-- Los detalles se cargarán aquí -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- New Post Modal -->
+    <div class="modal-overlay" id="newPostModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Crear Nueva Publicación</h3>
+                <button class="modal-close" id="closeNewPostModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="newPostForm">
+                    <div style="display: flex; flex-direction: column; gap: 20px;">
+                        <div>
+                            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #374151;">
+                                Contenido de la publicación *
+                            </label>
+                            <textarea 
+                                id="postContent"
+                                style="width: 100%; padding: 15px; border: 1px solid #d1d5db; border-radius: 8px; min-height: 150px; font-size: 0.9rem;"
+                                placeholder="Escribe el contenido de la publicación..."
+                                required
+                            ></textarea>
+                        </div>
+                        
+                        <div>
+                            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #374151;">
+                                Etiquetas (separadas por comas)
+                            </label>
+                            <input 
+                                type="text"
+                                id="postTags"
+                                style="width: 100%; padding: 12px 15px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 0.9rem;"
+                                placeholder="Ej: estudio, ayuda, programación"
+                            >
+                        </div>
+                        
+                        <div>
+                            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #374151;">
+                                Tipo de publicación
+                            </label>
+                            <select 
+                                id="postType"
+                                style="width: 100%; padding: 12px 15px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 0.9rem;"
+                            >
+                                <option value="normal">Normal</option>
+                                <option value="announcement">Anuncio</option>
+                                <option value="question">Pregunta</option>
+                                <option value="resource">Recurso</option>
+                            </select>
+                        </div>
+                        
+                        <div style="display: flex; gap: 15px; margin-top: 20px;">
+                            <button type="button" class="admin-btn btn-secondary" id="cancelNewPost">
+                                <i class='bx bx-x'></i>
+                                Cancelar
+                            </button>
+                            <button type="submit" class="admin-btn btn-primary">
+                                <i class='bx bx-send'></i>
+                                Publicar
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Notification -->
+    <div class="notification" id="notification"></div>
+
+    <script>
+        // Sistema de Publicaciones - Simple pero funcional
+        
+        // Datos iniciales de publicaciones
+        const initialPosts = [
+            {
+                id: 1,
+                userId: 101,
+                userName: "Ana García",
+                userCareer: "Ing. Software",
+                userInitials: "A",
+                content: "¿Alguien más está batallando con la Tarea 4 de Cálculo Avanzado? ¡Necesito un grupo de estudio urgente! 📚 Si alguien quiere formar un grupo de estudio, estaré en la biblioteca a las 4 PM. ¡Llevaré café! ☕",
+                tags: ["cálculo", "grupo estudio", "ingeniería"],
+                likes: 15,
+                comments: 8,
+                shares: 3,
+                reports: 0,
+                date: "2024-03-20T14:30:00",
+                type: "question",
+                status: "normal"
+            },
+            {
+                id: 2,
+                userId: 102,
+                userName: "Marco Flores",
+                userCareer: "Administración de Empresas",
+                userInitials: "M",
+                content: "¡Hola comunidad! Estoy vendiendo mangos con chile caseros 🥭🌶️ • Paquete pequeño: $25 • Paquete grande: $40 • Incluye chilito especial de la casa Interesados, mándenme un DM. ¡Apoyen el emprendimiento estudiantil! 💪",
+                tags: ["emprendimiento", "comida", "venta"],
+                likes: 28,
+                comments: 15,
+                shares: 5,
+                reports: 3,
+                date: "2024-03-20T12:15:00",
+                type: "announcement",
+                status: "reported"
+            },
+            {
+                id: 3,
+                userId: 103,
+                userName: "Carlos Rodríguez",
+                userCareer: "Sistemas Computacionales",
+                userInitials: "C",
+                content: "🚀 ¡Gran noticia! El hackathon de programación será el próximo mes. ¿Alguien quiere formar equipo? Tengo experiencia en desarrollo web (React, Node.js), bases de datos y APIs REST. Busco personas con habilidades en diseño UI/UX o machine learning. ¡Juntos podemos ganar! 💪",
+                tags: ["hackathon", "programación", "equipo", "tecnología"],
+                likes: 42,
+                comments: 23,
+                shares: 12,
+                reports: 0,
+                date: "2024-03-20T10:45:00",
+                type: "announcement",
+                status: "popular"
+            },
+            {
+                id: 4,
+                userId: 104,
+                userName: "Laura Hernández",
+                userCareer: "Lic. Administración",
+                userInitials: "L",
+                content: "¿Alguien tiene recomendaciones de libros para el curso de Filosofía Contemporánea? Estoy buscando material complementario para el examen final. ¡Gracias! 📚",
+                tags: ["filosofía", "libros", "recomendaciones"],
+                likes: 8,
+                comments: 12,
+                shares: 2,
+                reports: 1,
+                date: "2024-03-19T16:20:00",
+                type: "question",
+                status: "normal"
+            },
+            {
+                id: 5,
+                userId: 105,
+                userName: "Diego Ramirez",
+                userCareer: "Ing. Mecatrónica",
+                userInitials: "D",
+                content: "Comparto mis apuntes de Termodinámica. Los he organizado por temas y incluyen ejercicios resueltos. Espero que les sean útiles para el próximo examen. ¡Éxito a todos! 🔥",
+                tags: ["termodinámica", "apuntes", "recursos", "ingeniería"],
+                likes: 35,
+                comments: 18,
+                shares: 25,
+                reports: 0,
+                date: "2024-03-19T14:00:00",
+                type: "resource",
+                status: "popular"
+            },
+            {
+                id: 6,
+                userId: 106,
+                userName: "Sofía Torres",
+                userCareer: "Derecho",
+                userInitials: "S",
+                content: "¡Hola a todos! Estoy organizando un grupo de estudio para la materia de Derecho Constitucional. Nos reuniremos los miércoles a las 5 PM en la sala de estudio 3. ¡Todos son bienvenidos! ⚖️",
+                tags: ["derecho", "grupo estudio", "constitucional"],
+                likes: 12,
+                comments: 6,
+                shares: 3,
+                reports: 0,
+                date: "2024-03-19T11:30:00",
+                type: "announcement",
+                status: "normal"
+            }
+        ];
+
+        // Cargar publicaciones desde localStorage o usar datos iniciales
+        let posts = JSON.parse(localStorage.getItem('allPosts')) || initialPosts;
+        
+        // Variables globales
+        let currentPage = 1;
+        const postsPerPage = 6;
+
+        // Mostrar notificación
+        function showNotification(message, type = 'info') {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = `notification ${type} show`;
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Formatear fecha
+        function formatPostDate(dateString) {
+            const date = new Date(dateString);
+            const now = new Date();
+            const diffMs = now - date;
+            const diffMins = Math.floor(diffMs / (1000 * 60));
+            const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+            const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+            
+            if (diffMins < 60) {
+                return `Hace ${diffMins} minuto${diffMins !== 1 ? 's' : ''}`;
+            } else if (diffHours < 24) {
+                return `Hace ${diffHours} hora${diffHours !== 1 ? 's' : ''}`;
+            } else if (diffDays < 7) {
+                return `Hace ${diffDays} día${diffDays !== 1 ? 's' : ''}`;
+            } else {
+                return date.toLocaleDateString('es-ES', {
+                    day: 'numeric',
+                    month: 'short',
+                    year: 'numeric'
+                });
+            }
+        }
+
+        // Determinar clase de tarjeta basada en estado
+        function getPostCardClass(post) {
+            if (post.reports > 2) return 'reported';
+            if (post.likes > 30 || post.comments > 15) return 'popular';
+            return 'normal';
+        }
+
+        // Actualizar estadísticas
+        function updateStats() {
+            const totalPosts = posts.length;
+            const today = new Date().toLocaleDateString('es-ES');
+            const todayPosts = posts.filter(post => 
+                new Date(post.date).toLocaleDateString('es-ES') === today
+            ).length;
+            
+            const reportedPosts = posts.filter(post => post.reports > 2).length;
+            const popularPosts = posts.filter(post => post.likes > 30 || post.comments > 15).length;
+            
+            document.getElementById('totalPosts').textContent = totalPosts;
+            document.getElementById('todayPosts').textContent = todayPosts;
+            document.getElementById('reportedPosts').textContent = reportedPosts;
+            document.getElementById('popularPosts').textContent = popularPosts;
+            
+            // Actualizar badge en sidebar
+            document.getElementById('postsBadge').textContent = totalPosts;
+        }
+
+        // Renderizar tarjeta de publicación
+        function renderPostCard(post) {
+            const postDate = formatPostDate(post.date);
+            const cardClass = getPostCardClass(post);
+            const isLongContent = post.content.length > 150;
+            const displayContent = isLongContent ? post.content.substring(0, 150) + '...' : post.content;
+            
+            return `
+                <div class="post-card ${cardClass}" data-id="${post.id}">
+                    <div class="post-header">
+                        <div class="user-avatar">${post.userInitials}</div>
+                        <div class="user-info">
+                            <h4>${post.userName}</h4>
+                            <div class="user-details">${post.userCareer}</div>
+                            <div class="post-date">${postDate}</div>
+                        </div>
+                    </div>
+                    <div class="post-body">
+                        <div class="post-content" id="content-${post.id}">
+                            ${displayContent}
+                            ${isLongContent ? '<div class="read-more" onclick="toggleReadMore(' + post.id + ')">Leer más</div>' : ''}
+                        </div>
+                        
+                        ${post.tags.length > 0 ? `
+                            <div class="post-tags">
+                                ${post.tags.map(tag => `<span class="post-tag">#${tag}</span>`).join('')}
+                            </div>
+                        ` : ''}
+                        
+                        <div class="post-stats">
+                            <div class="stat-item">
+                                <i class='bx bx-heart'></i>
+                                ${post.likes}
+                            </div>
+                            <div class="stat-item">
+                                <i class='bx bx-comment'></i>
+                                ${post.comments}
+                            </div>
+                            <div class="stat-item">
+                                <i class='bx bx-share-alt'></i>
+                                ${post.shares}
+                            </div>
+                            ${post.reports > 0 ? `
+                                <div class="stat-item">
+                                    <i class='bx bx-flag'></i>
+                                    ${post.reports} reporte${post.reports !== 1 ? 's' : ''}
+                                </div>
+                            ` : ''}
+                        </div>
+                        
+                        <div class="post-actions">
+                            <button class="post-btn btn-view" onclick="viewPostDetails(${post.id})">
+                                <i class='bx bx-show'></i>
+                                Ver
+                            </button>
+                            <button class="post-btn btn-edit" onclick="editPost(${post.id})">
+                                <i class='bx bx-edit'></i>
+                                Editar
+                            </button>
+                            <button class="post-btn btn-delete" onclick="deletePost(${post.id})">
+                                <i class='bx bx-trash'></i>
+                                Eliminar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Alternar "Leer más"
+        function toggleReadMore(postId) {
+            const contentDiv = document.getElementById(`content-${postId}`);
+            const post = posts.find(p => p.id === postId);
+            
+            if (contentDiv.classList.contains('expanded')) {
+                contentDiv.innerHTML = post.content.substring(0, 150) + '...' + 
+                    '<div class="read-more" onclick="toggleReadMore(' + postId + ')">Leer más</div>';
+                contentDiv.classList.remove('expanded');
+            } else {
+                contentDiv.innerHTML = post.content + 
+                    '<div class="read-more" onclick="toggleReadMore(' + postId + ')">Leer menos</div>';
+                contentDiv.classList.add('expanded');
+            }
+        }
+
+        // Renderizar todas las publicaciones
+        function renderPosts(filteredPosts = posts) {
+            const postsGrid = document.getElementById('postsGrid');
+            
+            if (filteredPosts.length === 0) {
+                postsGrid.innerHTML = `
+                    <div class="empty-state">
+                        <i class='bx bx-message-square'></i>
+                        <h3>No hay publicaciones</h3>
+                        <p>No se encontraron publicaciones con los filtros aplicados.</p>
+                        <button class="admin-btn btn-primary" onclick="clearFilters()">
+                            <i class='bx bx-filter-alt'></i>
+                            Limpiar filtros
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Paginación
+            const startIndex = (currentPage - 1) * postsPerPage;
+            const endIndex = startIndex + postsPerPage;
+            const paginatedPosts = filteredPosts.slice(startIndex, endIndex);
+            
+            postsGrid.innerHTML = '';
+            paginatedPosts.forEach(post => {
+                postsGrid.innerHTML += renderPostCard(post);
+            });
+            
+            updateStats();
+            updatePagination(filteredPosts.length);
+        }
+
+        // Actualizar paginación
+        function updatePagination(totalPosts) {
+            const totalPages = Math.ceil(totalPosts / postsPerPage);
+            const paginationDiv = document.querySelector('.pagination');
+            const paginationInfo = document.querySelector('.pagination-info');
+            
+            // Actualizar información
+            paginationInfo.textContent = `de ${totalPages} página${totalPages !== 1 ? 's' : ''}`;
+            
+            // Actualizar botones de página
+            const pageButtons = paginationDiv.querySelectorAll('.pagination-btn:not(#prevPage):not(#nextPage)');
+            pageButtons.forEach((btn, index) => {
+                if (index < totalPages) {
+                    btn.textContent = index + 1;
+                    btn.style.display = 'block';
+                    btn.classList.toggle('active', index + 1 === currentPage);
+                } else {
+                    btn.style.display = 'none';
+                }
+            });
+            
+            // Actualizar estado de botones de navegación
+            document.getElementById('prevPage').disabled = currentPage === 1;
+            document.getElementById('nextPage').disabled = currentPage === totalPages;
+        }
+
+        // Ver detalles de publicación
+        function viewPostDetails(postId) {
+            const post = posts.find(p => p.id === postId);
+            if (!post) return;
+            
+            const modalTitle = document.getElementById('modalPostTitle');
+            const modalBody = document.getElementById('modalPostBody');
+            const modal = document.getElementById('postModal');
+            
+            modalTitle.textContent = `Publicación de ${post.userName}`;
+            modalBody.innerHTML = `
+                <div style="display: flex; flex-direction: column; gap: 25px;">
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div class="user-avatar" style="width: 60px; height: 60px; font-size: 1.5rem;">
+                            ${post.userInitials}
+                        </div>
+                        <div>
+                            <h4 style="color: #1e293b; margin-bottom: 5px;">${post.userName}</h4>
+                            <p style="color: #64748b; font-size: 0.9rem;">${post.userCareer}</p>
+                            <p style="color: #94a3b8; font-size: 0.8rem;">${formatPostDate(post.date)}</p>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h5 style="color: #6b7280; margin-bottom: 10px; font-size: 0.9rem;">CONTENIDO</h5>
+                        <div style="background: #f9fafb; padding: 20px; border-radius: 8px; line-height: 1.6; color: #4b5563;">
+                            ${post.content}
+                        </div>
+                    </div>
+                    
+                    ${post.tags.length > 0 ? `
+                    <div>
+                        <h5 style="color: #6b7280; margin-bottom: 10px; font-size: 0.9rem;">ETIQUETAS</h5>
+                        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                            ${post.tags.map(tag => `
+                                <span style="background: #e5e7eb; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; color: #4b5563;">
+                                    #${tag}
+                                </span>
+                            `).join('')}
+                        </div>
+                    </div>
+                    ` : ''}
+                    
+                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; background: #f9fafb; padding: 20px; border-radius: 8px;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 1.5rem; font-weight: 700; color: var(--admin-primary);">${post.likes}</div>
+                            <div style="font-size: 0.8rem; color: #6b7280;">ME GUSTA</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 1.5rem; font-weight: 700; color: var(--admin-primary);">${post.comments}</div>
+                            <div style="font-size: 0.8rem; color: #6b7280;">COMENTARIOS</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 1.5rem; font-weight: 700; color: var(--admin-primary);">${post.shares}</div>
+                            <div style="font-size: 0.8rem; color: #6b7280;">COMPARTIDOS</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 1.5rem; font-weight: 700; color: var(--admin-primary);">${post.reports}</div>
+                            <div style="font-size: 0.8rem; color: #6b7280;">REPORTES</div>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; gap: 15px;">
+                        <button onclick="editPost(${post.id})" class="admin-btn btn-edit" style="flex: 1;">
+                            <i class='bx bx-edit'></i>
+                            Editar Publicación
+                        </button>
+                        <button onclick="closeModal()" class="admin-btn btn-secondary" style="flex: 1;">
+                            <i class='bx bx-x'></i>
+                            Cerrar
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            modal.classList.add('show');
+        }
+
+        // Editar publicación
+        function editPost(postId) {
+            const post = posts.find(p => p.id === postId);
+            if (!post) return;
+            
+            // Para simplicidad, solo mostraremos un alert con opción de editar
+            const newContent = prompt('Editar contenido de la publicación:', post.content);
+            if (newContent && newContent.trim() !== '') {
+                post.content = newContent.trim();
+                savePosts();
+                renderPosts();
+                showNotification('Publicación actualizada exitosamente.', 'success');
+            }
+        }
+
+        // Eliminar publicación
+        function deletePost(postId) {
+            const post = posts.find(p => p.id === postId);
+            if (!post) return;
+            
+            if (confirm(`¿Estás seguro de eliminar la publicación de ${post.userName}?\n\n"${post.content.substring(0, 50)}..."`)) {
+                const postIndex = posts.findIndex(p => p.id === postId);
+                posts.splice(postIndex, 1);
+                savePosts();
+                renderPosts();
+                
+                showNotification('Publicación eliminada exitosamente.', 'error');
+            }
+        }
+
+        // Crear nueva publicación
+        function createNewPost() {
+            const content = document.getElementById('postContent').value.trim();
+            const tagsInput = document.getElementById('postTags').value.trim();
+            const type = document.getElementById('postType').value;
+            
+            if (!content) {
+                showNotification('El contenido de la publicación es requerido.', 'error');
+                return false;
+            }
+            
+            const tags = tagsInput ? tagsInput.split(',').map(tag => tag.trim()).filter(tag => tag) : [];
+            
+            const newPost = {
+                id: posts.length > 0 ? Math.max(...posts.map(p => p.id)) + 1 : 1,
+                userId: 999, // ID del administrador
+                userName: "Administrador ComuniTec",
+                userCareer: "Administración",
+                userInitials: "A",
+                content: content,
+                tags: tags,
+                likes: 0,
+                comments: 0,
+                shares: 0,
+                reports: 0,
+                date: new Date().toISOString(),
+                type: type,
+                status: "normal"
+            };
+            
+            posts.unshift(newPost); // Agregar al inicio
+            savePosts();
+            renderPosts();
+            
+            return true;
+        }
+
+        // Filtrar publicaciones
+        function filterPosts() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const typeFilter = document.getElementById('typeFilter').value;
+            const dateFilter = document.getElementById('dateFilter').value;
+            const sortFilter = document.getElementById('sortFilter').value;
+            
+            let filtered = [...posts];
+            
+            // Filtrar por búsqueda
+            if (searchTerm) {
+                filtered = filtered.filter(post =>
+                    post.content.toLowerCase().includes(searchTerm) ||
+                    post.userName.toLowerCase().includes(searchTerm) ||
+                    post.tags.some(tag => tag.toLowerCase().includes(searchTerm))
+                );
+            }
+            
+            // Filtrar por tipo
+            if (typeFilter === 'reported') {
+                filtered = filtered.filter(post => post.reports > 2);
+            } else if (typeFilter === 'popular') {
+                filtered = filtered.filter(post => post.likes > 30 || post.comments > 15);
+            } else if (typeFilter === 'normal') {
+                filtered = filtered.filter(post => post.reports <= 2 && post.likes <= 30 && post.comments <= 15);
+            }
+            
+            // Filtrar por fecha
+            const now = new Date();
+            if (dateFilter === 'today') {
+                const today = now.toLocaleDateString('es-ES');
+                filtered = filtered.filter(post =>
+                    new Date(post.date).toLocaleDateString('es-ES') === today
+                );
+            } else if (dateFilter === 'week') {
+                const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+                filtered = filtered.filter(post => new Date(post.date) >= weekAgo);
+            } else if (dateFilter === 'month') {
+                const monthAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
+                filtered = filtered.filter(post => new Date(post.date) >= monthAgo);
+            }
+            
+            // Ordenar
+            switch(sortFilter) {
+                case 'newest':
+                    filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
+                    break;
+                case 'oldest':
+                    filtered.sort((a, b) => new Date(a.date) - new Date(b.date));
+                    break;
+                case 'popular':
+                    filtered.sort((a, b) => (b.likes + b.comments) - (a.likes + a.comments));
+                    break;
+                case 'reported':
+                    filtered.sort((a, b) => b.reports - a.reports);
+                    break;
+            }
+            
+            return filtered;
+        }
+
+        // Aplicar filtros
+        function applyFilters() {
+            currentPage = 1;
+            const filteredPosts = filterPosts();
+            renderPosts(filteredPosts);
+        }
+
+        // Limpiar filtros
+        function clearFilters() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('typeFilter').value = '';
+            document.getElementById('dateFilter').value = '';
+            document.getElementById('sortFilter').value = 'newest';
+            applyFilters();
+            showNotification('Filtros limpiados.', 'info');
+        }
+
+        // Guardar publicaciones en localStorage
+        function savePosts() {
+            localStorage.setItem('allPosts', JSON.stringify(posts));
+        }
+
+        // Cerrar modal
+        function closeModal() {
+            document.getElementById('postModal').classList.remove('show');
+        }
+
+        // Cerrar modal de nueva publicación
+        function closeNewPostModal() {
+            document.getElementById('newPostModal').classList.remove('show');
+            document.getElementById('newPostForm').reset();
+        }
+
+        // Mostrar modal de nueva publicación
+        function showNewPostModal() {
+            document.getElementById('newPostModal').classList.add('show');
+        }
+
+        // Cambiar página
+        function changePage(direction) {
+            const filteredPosts = filterPosts();
+            const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
+            
+            if (direction === 'prev' && currentPage > 1) {
+                currentPage--;
+            } else if (direction === 'next' && currentPage < totalPages) {
+                currentPage++;
+            }
+            
+            renderPosts(filteredPosts);
+        }
+
+        // Ir a página específica
+        function goToPage(page) {
+            currentPage = page;
+            const filteredPosts = filterPosts();
+            renderPosts(filteredPosts);
+        }
+
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', function() {
+            // Renderizar publicaciones iniciales
+            renderPosts();
+            
+            // Configurar búsqueda en tiempo real
+            document.getElementById('searchInput').addEventListener('input', applyFilters);
+            
+            // Configurar filtros
+            document.getElementById('typeFilter').addEventListener('change', applyFilters);
+            document.getElementById('dateFilter').addEventListener('change', applyFilters);
+            document.getElementById('sortFilter').addEventListener('change', applyFilters);
+            
+            // Configurar botón de actualizar
+            document.getElementById('refreshBtn').addEventListener('click', function() {
+                const btn = this;
+                btn.innerHTML = '<i class="bx bx-loader-circle bx-spin"></i> Actualizando...';
+                
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="bx bx-refresh"></i> Actualizar';
+                    applyFilters();
+                    showNotification('Publicaciones actualizadas.', 'info');
+                }, 1000);
+            });
+            
+            // Configurar botón de nueva publicación
+            document.getElementById('newPostBtn').addEventListener('click', showNewPostModal);
+            
+            // Configurar formulario de nueva publicación
+            document.getElementById('newPostForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                if (createNewPost()) {
+                    closeNewPostModal();
+                    showNotification('Nueva publicación creada exitosamente.', 'success');
+                }
+            });
+            
+            // Configurar botón de cancelar nueva publicación
+            document.getElementById('cancelNewPost').addEventListener('click', closeNewPostModal);
+            
+            // Configurar cierre de modales
+            document.getElementById('closeModal').addEventListener('click', closeModal);
+            document.getElementById('closeNewPostModal').addEventListener('click', closeNewPostModal);
+            
+            // Cerrar modales al hacer clic fuera
+            document.getElementById('postModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeModal();
+                }
+            });
+            
+            document.getElementById('newPostModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeNewPostModal();
+                }
+            });
+            
+            // Configurar paginación
+            document.getElementById('prevPage').addEventListener('click', () => changePage('prev'));
+            document.getElementById('nextPage').addEventListener('click', () => changePage('next'));
+            
+            // Configurar clic en números de página
+            document.querySelectorAll('.pagination-btn:not(#prevPage):not(#nextPage)').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const page = parseInt(this.textContent);
+                    goToPage(page);
+                });
+            });
+            
+            // Auto-actualizar cada 30 segundos
+            setInterval(() => {
+                applyFilters();
+            }, 30000);
+        });
+    </script>
+</body>
+</html>

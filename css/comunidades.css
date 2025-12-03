@@ -1,0 +1,230 @@
+/* comunidades.css - Versión mejorada */
+/* Paleta de Colores:
+   - Azul: #007bff
+   - Gris claro: #f8f9fa
+*/
+.return {
+    width: 30px;
+    height: 30px;
+    margin-right: 15px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.return:hover {
+    transform: translateX(-3px);
+}
+
+body {
+    background-color: #f8f9fa; 
+}
+
+/* Estilos para el Menú Lateral */
+.sidebar {
+    background-color: #ffffff; 
+    min-height: calc(100vh - 70px); 
+    border-right: 1px solid #ced4da; 
+    padding-top: 20px;
+}
+
+.sidebar-btn {
+    color: #6c757d; 
+    border-color: #ced4da; 
+    padding: 12px 15px;
+    font-size: 1rem;
+    text-align: left;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.sidebar-btn:hover, .sidebar-btn:focus {
+    background-color: #e6f3ff; 
+    border-color: #006699;
+    color: #006699; 
+    transform: translateX(5px);
+    box-shadow: 0 2px 8px rgba(0, 102, 153, 0.15);
+}
+
+.sidebar-btn.active {
+    background-color: #006699;
+    color: white;
+    border-color: #006699;
+}
+
+/* Estilos de la Tarjeta de Comunidad (Contenedor) */
+.course-card {
+    background-color: #ffffff;
+    transition: all 0.3s ease;
+    display: flex; 
+    flex-direction: column;
+    height: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid #e5e7eb;
+}
+
+.course-card:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+    transform: translateY(-5px);
+}
+
+.course-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(135deg, #006699 0%, #004d73 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.course-card:hover::before {
+    opacity: 1;
+}
+
+/* 🖼️ EFECTO DE "BRINCO" (Clase aplicada en el HTML) */
+.course-img {
+    width: 100%;
+    max-height: 180px;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+}
+
+.img-hover-brinco {
+    transition: transform 0.4s ease-out, filter 0.4s ease-out; 
+    transform: translateY(0) scale(1);
+    position: relative;
+    z-index: 10; 
+}
+
+.img-hover-brinco:hover {
+    transform: translateY(-10px) scale(1.05); 
+    filter: brightness(0.9);
+}
+
+/* Estilo para los botones */
+.add-community-btn {
+    margin-top: auto; 
+    background: linear-gradient(135deg, #006699 0%, #004d73 100%);
+    border: none;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.add-community-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 102, 153, 0.3);
+}
+
+.join-course-btn {
+    border-color: #ced4da;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.join-course-btn:hover {
+    background-color: #f0f9ff;
+    border-color: #006699;
+    color: #006699;
+    transform: translateY(-1px);
+}
+
+/* Estilos para el contenido de las tarjetas */
+.course-title {
+    font-weight: 700;
+    color: #1F2937;
+    margin-top: 15px;
+    margin-bottom: 8px;
+    font-size: 1.2rem;
+}
+
+.course-members {
+    color: #006699;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.course-description {
+    line-height: 1.5;
+    margin-bottom: 15px;
+    flex-grow: 1;
+}
+
+.course-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 15px;
+}
+
+.course-tags span {
+    background: #e6f3ff;
+    color: #006699;
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* Estilos para la sección de Mis Comunidades */
+#my-courses h2 {
+    background: linear-gradient(135deg, #006699 0%, #004d73 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 800;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+/* Botón de eliminar comunidad */
+.btn-danger {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    border: none;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-danger:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+/* Mejoras para el encabezado de la sección */
+.content-section h2 {
+    font-weight: 800;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .sidebar {
+        min-height: auto;
+        padding: 15px;
+    }
+    
+    .sidebar-btn {
+        padding: 10px;
+        font-size: 0.9rem;
+        margin-bottom: 5px;
+    }
+    
+    .course-card {
+        margin-bottom: 20px;
+    }
+}

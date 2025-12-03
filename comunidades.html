@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><Comunidades-Comunitec></Comunidades-Comunitec></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/comunidades.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+     <link rel="icon" type="image/png" href="img/favicon.png">
+    <script src="javascript/auth.js"></script>
+</head>
+<body>
+
+     <header class="header-main">
+        <div class="header-container">
+            <div class="header-brand">
+                <div class="logo-container">
+                    <a href="main.html"><img class="return" src="img/regresar.png" alt=""></a>
+                    <h1 class="logo-text">ComuniTec</h1>
+                </div>
+            </div>
+            <div class="header-search">
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" placeholder="Buscar Comunidades,  o temas..." class="search-input">
+                    <button class="search-filters">⚙️</button>
+                </div>
+            </div>
+            <div class="header-actions">
+                <div class="profile-container">
+                    <div class="profile-dropdown">
+                        <div class="profile-avatar">
+                            J
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </header>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2 p-4 bg-light sidebar">
+                <div class="d-grid gap-3">
+                   <button class="btn btn-outline-secondary sidebar-btn active" onclick="showSection('all-courses')">Todas</button>
+                    <button class="btn btn-outline-secondary sidebar-btn" id="mis-comunidades-btn" onclick="showSection('my-courses')">Mis Comunidades</button>
+                    <button class="btn btn-outline-secondary sidebar-btn">Populares</button>
+                    <button class="btn btn-outline-secondary sidebar-btn">Por Carrera</button>
+                </div>
+            </div>
+
+            <div class="col-md-10 p-4">
+                
+                <div id="all-courses" class="content-section">
+                    <h2 class="mb-4 text-center">Comunidades</h2>
+                    <div class="row row-cols-1 row-cols-lg-3 g-4">
+                        
+                        <div class="col">
+                            <div class="course-card p-3 bg-white shadow-sm border rounded" data-id="1">
+                                <img class="course-img img-hover-brinco" src="img/imagen1.jpeg" alt="Imagen Cálculo">
+                                <h5 class="course-title">Cálculo Multivariable</h5>
+                                <p class="course-members">35 miembros</p> 
+                                <p class="course-description text-secondary">Grupo de estudio para cálculo multivariable y ecuaciones diferenciales</p>
+                                <p class="course-tags text-muted small">Matemáticas Ingeniería PA</p>
+                                <div class="d-grid gap-2 mt-2">
+                                   <button class="btn btn-primary add-community-btn" onclick="addCourse(1, 'Cálculo Multivariable')">Unirse a la Comunidad</button>
+                                    <!-- <button class="btn btn-outline-secondary join-course-btn" onclick="joinCourse()">Unirme al Curso</button> -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="course-card p-3 bg-white shadow-sm border rounded" data-id="2">
+                                <img class="course-img img-hover-brinco" src="img/img2.jpeg" alt="Imagen Programación">
+                                <h5 class="course-title">Programación Avanzada</h5>
+                                <p class="course-members">42 miembros</p> 
+                                <p class="course-description text-secondary">Compartimos código, proyectos y ayudamos con dudas de programación</p>
+                                <p class="course-tags text-muted small">Programación Tecnología DX</p>
+                                <div class="d-grid gap-2 mt-2">
+                                  <button class="btn btn-primary add-community-btn" onclick="addCourse(1, 'Cálculo Multivariable')">Unirse a la Comunidad</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col">
+                            <div class="course-card p-3 bg-white shadow-sm border rounded" data-id="3">
+                                <img class="course-img img-hover-brinco" src="img/img3.jpeg" alt="Imagen Comunicación">
+                                <h5 class="course-title">Comunicación Asertiva</h5>
+                                <p class="course-description text-secondary">Técnicas de comunicación efectiva. Manejo de conflictos. Cómo expresarte con claridad en línea.</p>
+                                <p class="course-tags text-muted small">Habilidades Blandas</p>
+                                <div class="d-grid gap-2 mt-2">
+                                    <button class="btn btn-primary add-community-btn" onclick="addCourse(1, 'Cálculo Multivariable')">Unirse a la Comunidad</button>
+                                    <!-- <button class="btn btn-outline-secondary join-course-btn" onclick="joinCourse()">Unirme al Curso</button> -->
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col">
+                            <div class="course-card p-3 bg-white shadow-sm border rounded" data-id="4">
+                                <img class="course-img img-hover-brinco" src="img/img4.jpeg" alt="Imagen Seguridad">
+                                <h5 class="course-title">Seguridad Digital Básica</h5>
+                                <p class="course-description text-secondary">Cómo proteger tu información en línea. Reconocimiento de estafas y phishing. Creación de contraseñas seguras.</p>
+                                <p class="course-tags text-muted small">Tecnología Seguridad</p>
+                                <div class="d-grid gap-2 mt-2">
+                                    <button class="btn btn-primary add-community-btn" onclick="addCourse(1, 'Cálculo Multivariable')">Unirse a la Comunidad</button>
+                                   <!--  <button class="btn btn-outline-secondary join-course-btn" onclick="joinCourse()">Unirme al Curso</button> -->
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col">
+                            <div class="course-card p-3 bg-white shadow-sm border rounded" data-id="5">
+                                <img class="course-img img-hover-brinco" src="img/img5.jpeg" alt="Imagen Emprendimiento">
+                                <h5 class="course-title">Introducción al Emprendimiento</h5>
+                                <p class="course-description text-secondary">Cómo iniciar un proyecto o negocio. Conceptos básicos de marketing. Gestión del tiempo y productividad.</p>
+                                <p class="course-tags text-muted small">Negocios Emprendimiento</p>
+                                <div class="d-grid gap-2 mt-2">
+                                    <button class="btn btn-primary add-community-btn" onclick="addCourse(1, 'Cálculo Multivariable')">Unirse a la Comunidad</button>
+                                    <!-- <button class="btn btn-outline-secondary join-course-btn" onclick="joinCourse()">Unirme al Curso</button> -->
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col">
+                            <div class="course-card p-3 bg-white shadow-sm border rounded" data-id="6">
+                                <img class="course-img img-hover-brinco" src="img/img6.png" alt="Imagen Emocional">
+                                <h5 class="course-title">Inteligencia Emocional</h5>
+                                <p class="course-description text-secondary">Cómo reconocer y manejar emociones. Empatía en redes sociales. Estrategias para mejorar tus relaciones digitales.</p>
+                                <p class="course-tags text-muted small">Desarrollo Personal</p>
+                                <div class="d-grid gap-2 mt-2">
+                                    <button class="btn btn-primary add-community-btn" onclick="addCourse(1, 'Cálculo Multivariable')">Unirse a la Comunidad</button>
+                                    <!-- <button class="btn btn-outline-secondary join-course-btn" onclick="joinCourse()">Unirme al Curso</button> -->
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col">
+                            <div class="course-card p-3 bg-white shadow-sm border rounded" data-id="7">
+                                <img class="course-img img-hover-brinco" src="img/img7.jpeg" alt="Imagen Contenido">
+                                <h5 class="course-title">Creación de Contenido</h5>
+                                <p class="course-description text-secondary">Cómo crear publicaciones atractivas. Fotografía y video desde celular. Introducción al storytelling para redes.</p>
+                                <p class="course-tags text-muted small">Marketing Redes Sociales</p>
+                                <div class="d-grid gap-2 mt-2">
+                                    <button class="btn btn-primary add-community-btn" onclick="addCourse(1, 'Cálculo Multivariable')">Unirse a la Comunidad</button>
+                                    <!-- <button class="btn btn-outline-secondary join-course-btn" onclick="joinCourse()">Unirme al Curso</button> -->
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col">
+                            <div class="course-card p-3 bg-white shadow-sm border rounded" data-id="8">
+                                <img class="course-img img-hover-brinco" src="img/img8.jpeg" alt="Imagen Finanzas">
+                                <h5 class="course-title">Finanzas Personales Básicas</h5>
+                                <p class="course-description text-secondary">Manejo responsable del dinero. Planificación financiera. Ahorro e inversión básica.</p>
+                                <p class="course-tags text-muted small">Economía Finanzas</p>
+                                <div class="d-grid gap-2 mt-2">
+                                    <button class="btn btn-primary add-community-btn" onclick="addCourse(1, 'Cálculo Multivariable')">Unirse a la Comunidad</button>
+                                    <!-- <button class="btn btn-outline-secondary join-course-btn" onclick="joinCourse()">Unirme al Curso</button> -->
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                
+                <div id="my-courses" class="content-section" style="display: none;">
+                    <h2 class="mb-4 text-center text-primary">Mis Comunidades (Cursos Inscritos)</h2>
+                    <div id="my-courses-list" class="row row-cols-1 row-cols-lg-3 g-4">
+                        <p class="text-center text-muted w-100" id="no-courses-msg">No tienes cursos agregados a tus comunidades. ¡Agrega uno!</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="javascript/feed.js"></script>
+    <script>
+        let myCourses = JSON.parse(localStorage.getItem('myCourses')) || [];
+        function setActiveSidebarButton(activeButton) {
+            document.querySelectorAll('.sidebar-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            activeButton.classList.add('active');
+        }
+
+
+        function addCourse(id, title) {
+            const exists = myCourses.some(course => course.id === id);
+            const button = event.target;
+
+            if (!exists) {
+                myCourses.push({ id, title });
+                localStorage.setItem('myCourses', JSON.stringify(myCourses));
+                alert(`La comunidad de "${title}" ha sido agregada a Mis Comunidades.`);
+                
+                button.disabled = true;
+                button.textContent = 'Agregada';
+                button.classList.remove('btn-primary');
+                button.classList.add('btn-success');
+            } else {
+                alert(`La comunidad de "${title}" ya está en Mis Comunidades.`);
+            }
+        }
+
+        function joinCourse() {
+            alert('¡Hola! Por el momento, la función "Unirme al Curso" no está disponible.');
+        }
+
+        function removeCourse(id, title) {
+            myCourses = myCourses.filter(course => course.id !== id);
+            localStorage.setItem('myCourses', JSON.stringify(myCourses));
+            alert(`"${title}" ha sido eliminado de Mis Comunidades.`);
+            renderMyCourses(); 
+            
+            // Re-habilitar el botón en la vista de 'Todos los Cursos'
+            const originalButton = document.querySelector(`.course-card[data-id="${id}"] .add-community-btn`);
+            if (originalButton) {
+                originalButton.disabled = false;
+                originalButton.textContent = 'Agregar Comunidad';
+                originalButton.classList.remove('btn-success');
+                originalButton.classList.add('btn-primary');
+            }
+        }
+
+        function renderMyCourses() {
+            const listContainer = document.getElementById('my-courses-list');
+            listContainer.innerHTML = ''; 
+            
+            if (myCourses.length === 0) {
+                listContainer.innerHTML = '<p class="text-center text-muted w-100" id="no-courses-msg">No tienes comunidades agregadas. ¡Agrega una!</p>';
+                return;
+            }
+
+            myCourses.forEach(course => {
+                const originalCardContainer = document.querySelector(`.course-card[data-id="${course.id}"]`).parentElement;
+                
+                if (originalCardContainer) {
+                    const clonedCol = originalCardContainer.cloneNode(true);
+                    
+                    const clonedCard = clonedCol.querySelector('.course-card');
+                    if(clonedCard) {
+                        // Limpiar botones de la tarjeta clonada
+                        clonedCard.querySelectorAll('.add-community-btn, .join-course-btn').forEach(btn => btn.remove());
+                        
+                        // Crear y añadir el botón de eliminar comunidad
+                        const removeBtn = document.createElement('button');
+                        removeBtn.className = 'btn btn-danger btn-sm w-100 mt-2';
+                        removeBtn.textContent = 'Eliminar de Comunidad';
+                        removeBtn.onclick = () => removeCourse(course.id, course.title);
+                        
+                        let btnContainer = clonedCard.querySelector('.d-grid.gap-2.mt-2');
+                        if (!btnContainer) {
+                            btnContainer = document.createElement('div');
+                            btnContainer.className = 'd-grid gap-2 mt-2';
+                            clonedCard.appendChild(btnContainer);
+                        }
+                        btnContainer.appendChild(removeBtn);
+                    }
+                    listContainer.appendChild(clonedCol);
+                }
+            });
+        }
+        
+            function showSection(sectionId) {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.style.display = 'none';
+            });
+
+            document.getElementById(sectionId).style.display = 'block';
+
+            if (sectionId === 'my-courses') {
+                renderMyCourses();
+            }
+            
+            // Actualiza el botón activo
+            const activeButton = event.target;
+            setActiveSidebarButton(activeButton);
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            // Inicializar el estado de los botones al cargar
+            myCourses.forEach(course => {
+                const button = document.querySelector(`.course-card[data-id="${course.id}"] .add-community-btn`);
+                if (button) {
+                    button.disabled = true;
+                    button.textContent = 'Agregada';
+                    button.classList.remove('btn-primary');
+                    button.classList.add('btn-success');
+                }
+            });
+            showSection('all-courses');
+        });
+    </script>
+</body>
+</html>

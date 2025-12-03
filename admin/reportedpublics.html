@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publicaciones Reportadas - ComuniTec</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --admin-primary: #8B0000;
+            --admin-secondary: #B22222;
+            --admin-light: #FFF5F5;
+            --admin-dark: #5A0000;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background-color: #f8fafc;
+            color: #334155;
+        }
+        
+        .admin-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            min-height: 100vh;
+        }
+        
+        /* Sidebar */
+        .admin-sidebar {
+            background: linear-gradient(180deg, var(--admin-primary) 0%, var(--admin-dark) 100%);
+            color: white;
+            padding: 0;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        }
+        
+        .admin-brand {
+            padding: 25px 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+        }
+        
+        .admin-brand h1 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+        
+        .admin-brand span {
+            background: rgba(255,255,255,0.2);
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        
+        .admin-nav {
+            padding: 20px 0;
+        }
+        
+        .nav-section {
+            margin-bottom: 25px;
+        }
+        
+        .nav-section h3 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            padding: 0 20px 10px;
+            color: rgba(255,255,255,0.7);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+        }
+        
+        .nav-item:hover, .nav-item.active {
+            background: rgba(255,255,255,0.1);
+            border-left-color: white;
+            color: white;
+        }
+        
+        .nav-item i {
+            margin-right: 12px;
+            font-size: 1.2rem;
+        }
+        
+        .nav-badge {
+            margin-left: auto;
+            background: var(--admin-secondary);
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        
+        /* Main Content */
+        .admin-main {
+            padding: 0;
+            overflow-y: auto;
+        }
+        
+        .admin-header {
+            background: white;
+            padding: 20px 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .admin-title h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1e293b;
+        }
+        
+        .admin-title p {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        
+        .admin-actions {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .admin-btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            border: none;
+        }
+        
+        .btn-primary {
+            background: var(--admin-primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: var(--admin-dark);
+        }
+        
+        .btn-secondary {
+            background: #f1f5f9;
+            color: #475569;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .btn-secondary:hover {
+            background: #e2e8f0;
+        }
+        
+        /* Dashboard Content */
+        .dashboard-content {
+            padding: 30px;
+        }
+        
+        /* Content Sections */
+        .content-section {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #1e293b;
+        }
+        
+        .section-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .section-action {
+            background: none;
+            border: none;
+            color: #64748b;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .section-action:hover {
+            color: var(--admin-primary);
+        }
+        
+        /* Filters Section */
+        .filters-section {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+        }
+        
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .filter-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #475569;
+        }
+        
+        .filter-select, .filter-input {
+            padding: 10px 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            background: white;
+        }
+        
+        .filter-select:focus, .filter-input:focus {
+            outline: none;
+            border-color: var(--admin-primary);
+            box-shadow: 0 0 0 3px rgba(139, 0, 0, 0.1);
+        }
+        
+        /* Reported Posts */
+        .reported-posts-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .reported-post {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .reported-post:hover {
+            border-color: var(--admin-primary);
+            box-shadow: 0 4px 12px rgba(139, 0, 0, 0.1);
+        }
+        
+        .reported-post.urgent {
+            border-left: 4px solid #ef4444;
+        }
+        
+        .reported-post.high {
+            border-left: 4px solid #f59e0b;
+        }
+        
+        .reported-post.medium {
+            border-left: 4px solid #3b82f6;
+        }
+        
+        .reported-post.low {
+            border-left: 4px solid #10b981;
+        }
+        
+        .post-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        
+        .post-user {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--admin-primary), var(--admin-secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: white;
+            font-size: 1.2rem;
+        }
+        
+        .user-info h4 {
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 4px;
+        }
+        
+        .user-info p {
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+        
+        .post-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 8px;
+        }
+        
+        .post-date {
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+        
+        .priority-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .priority-urgent {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+        
+        .priority-high {
+            background: #fef3c7;
+            color: #d97706;
+        }
+        
+        .priority-medium {
+            background: #dbeafe;
+            color: #2563eb;
+        }
+        
+        .priority-low {
+            background: #d1fae5;
+            color: #059669;
+        }
+        
+        .post-content {
+            margin-bottom: 20px;
+            line-height: 1.6;
+            color: #374151;
+        }
+        
+        .post-image {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .post-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .post-tag {
+            background: #f1f5f9;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #475569;
+        }
+        
+        /* Reports Section */
+        .reports-section {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .reports-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .reports-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1e293b;
+        }
+        
+        .reports-count {
+            background: var(--admin-primary);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        
+        .report-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .report-item:last-child {
+            border-bottom: none;
+        }
+        
+        .report-reason {
+            font-weight: 500;
+            color: #374151;
+        }
+        
+        .report-count {
+            background: #f1f5f9;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #475569;
+        }
+        
+        /* Post Actions */
+        .post-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .post-btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .btn-approve {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        
+        .btn-approve:hover {
+            background: #a7f3d0;
+        }
+        
+        .btn-delete {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+        
+        .btn-delete:hover {
+            background: #fecaca;
+        }
+        
+        .btn-warn {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        
+        .btn-warn:hover {
+            background: #fde68a;
+        }
+        
+        .btn-ignore {
+            background: #f1f5f9;
+            color: #475569;
+        }
+        
+        .btn-ignore:hover {
+            background: #e2e8f0;
+        }
+        
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #64748b;
+        }
+        
+        .empty-state i {
+            font-size: 3rem;
+            color: #cbd5e1;
+            margin-bottom: 20px;
+        }
+        
+        .empty-state h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #475569;
+        }
+        
+        .empty-state p {
+            font-size: 0.9rem;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+        
+        .pagination-btn {
+            padding: 8px 12px;
+            border: 1px solid #e2e8f0;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .pagination-btn:hover {
+            background: #f1f5f9;
+        }
+        
+        .pagination-btn.active {
+            background: var(--admin-primary);
+            color: white;
+            border-color: var(--admin-primary);
+        }
+        
+        .pagination-info {
+            font-size: 0.8rem;
+            color: #64748b;
+            margin: 0 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="admin-brand">
+                <h1>ComuniTec <span>ADMIN</span></h1>
+                <p>Panel de Control</p>
+            </div>
+            
+            <nav class="admin-nav">
+                <div class="nav-section">
+                    <h3>Principal</h3>
+                    <a href="dashboard.html" class="nav-item">
+                        <i class='bx bx-home-alt'></i>
+                        Dashboard
+                    </a>
+                    <a href="estadisticas.html" class="nav-item">
+                        <i class='bx bx-stats'></i>
+                        Estadísticas
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <h3>Moderación</h3>
+                    <a href="reportedpublics.html" class="nav-item active">
+                        <i class='bx bx-flag'></i>
+                        Publicaciones Reportadas
+                        <span class="nav-badge">12</span>
+                    </a>
+                    <a href="reportedcoments.html" class="nav-item">
+                        <i class='bx bx-comment-dots'></i>
+                        Comentarios Reportados
+                        <span class="nav-badge">5</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <h3>Gestión de Usuarios</h3>
+                    <a href="newusers.html" class="nav-item">
+                        <i class='bx bx-user-plus'></i>
+                        Nuevos Usuarios
+                        <span class="nav-badge">8</span>
+                    </a>
+                    <a href="allusers.html" class="nav-item">
+                        <i class='bx bx-group'></i>
+                        Todos los Usuarios
+                    </a>
+                    <a href="suspendedusers.html" class="nav-item">
+                        <i class='bx bx-user-x'></i>
+                        Usuarios Suspendidos
+                        <span class="nav-badge">3</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <h3>Contenido</h3>
+                    <a href="eventos.html" class="nav-item">
+                        <i class='bx bx-calendar-event'></i>
+                        Gestión de Eventos
+                    </a>
+                    <a href="allpublish.html" class="nav-item">
+                        <i class='bx bx-message-square'></i>
+                        Todas las Publicaciones
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <h3>Sistema</h3>
+                    <a href="configadmin.html" class="nav-item">
+                        <i class='bx bx-cog'></i>
+                        Configuración
+                    </a>
+                   <!--  <a href="#" class="nav-item">
+                        <i class='bx bx-shield-quarter'></i>
+                        Seguridad
+                    </a> -->
+                    <a href="index.html" class="nav-item">
+                        <i class='bx bx-log-out'></i>
+                        Cerrar Sesión
+                    </a>
+                </div>
+            </nav>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="admin-main">
+            <header class="admin-header">
+                <div class="admin-title">
+                    <h1>Publicaciones Reportadas</h1>
+                    <p>Gestiona y modera el contenido reportado por la comunidad</p>
+                </div>
+                <div class="admin-actions">
+                    <button class="admin-btn btn-secondary">
+                        <i class='bx bx-export'></i>
+                        Exportar Reportes
+                    </button>
+                    <button class="admin-btn btn-primary">
+                        <i class='bx bx-filter-alt'></i>
+                        Filtros Avanzados
+                    </button>
+                </div>
+            </header>
+            
+            <div class="dashboard-content">
+                <!-- Filters Section -->
+                <div class="filters-section">
+                    <div class="filters-grid">
+                        <div class="filter-group">
+                            <label class="filter-label">Prioridad</label>
+                            <select class="filter-select">
+                                <option value="">Todas las prioridades</option>
+                                <option value="urgent">Urgente</option>
+                                <option value="high">Alta</option>
+                                <option value="medium">Media</option>
+                                <option value="low">Baja</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">Estado</label>
+                            <select class="filter-select">
+                                <option value="">Todos los estados</option>
+                                <option value="pending">Pendiente</option>
+                                <option value="reviewed">Revisado</option>
+                                <option value="resolved">Resuelto</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">Tipo de Contenido</label>
+                            <select class="filter-select">
+                                <option value="">Todos los tipos</option>
+                                <option value="post">Publicación</option>
+                                <option value="comment">Comentario</option>
+                                <option value="event">Evento</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">Fecha</label>
+                            <input type="date" class="filter-input">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Reported Posts Container -->
+                <div class="reported-posts-container">
+                    <!-- Post 1 - Urgent -->
+                    <div class="reported-post urgent">
+                        <div class="post-header">
+                            <div class="post-user">
+                                <div class="user-avatar">A</div>
+                                <div class="user-info">
+                                    <h4>Ana García</h4>
+                                    <p>Ingeniería de Software • 2 reportes anteriores</p>
+                                </div>
+                            </div>
+                            <div class="post-meta">
+                                <span class="post-date">Hace 2 horas</span>
+                                <span class="priority-badge priority-urgent">Urgente</span>
+                            </div>
+                        </div>
+                        
+                        <div class="post-content">
+                            <p>¡Oferta especial! Vendo apuntes y exámenes pasados de todas las materias. 📚💰</p>
+                            <p>• Paquete completo: $500<br>• Materias individuales: $50 c/u<br>• Garantizado o devolución completa</p>
+                            <p>Interesados enviar DM. Pago por transferencia.</p>
+                        </div>
+                        
+                        <div class="post-tags">
+                            <span class="post-tag">#Venta</span>
+                            <span class="post-tag">#Apuntes</span>
+                            <span class="post-tag">#Exámenes</span>
+                        </div>
+                        
+                        <div class="reports-section">
+                            <div class="reports-header">
+                                <h4 class="reports-title">Reportes</h4>
+                                <span class="reports-count">8 reportes</span>
+                            </div>
+                            <div class="report-item">
+                                <span class="report-reason">Contenido académico inapropiado</span>
+                                <span class="report-count">5</span>
+                            </div>
+                            <div class="report-item">
+                                <span class="report-reason">Venta no autorizada</span>
+                                <span class="report-count">3</span>
+                            </div>
+                        </div>
+                        
+                        <div class="post-actions">
+                            <button class="post-btn btn-delete">
+                                <i class='bx bx-trash'></i>
+                                Eliminar Publicación
+                            </button>
+                            <button class="post-btn btn-warn">
+                                <i class='bx bx-user-voice'></i>
+                                Advertir Usuario
+                            </button>
+                            <button class="post-btn btn-ignore">
+                                <i class='bx bx-check'></i>
+                                Ignorar Reportes
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Post 2 - High Priority -->
+                    <div class="reported-post high">
+                        <div class="post-header">
+                            <div class="post-user">
+                                <div class="user-avatar">C</div>
+                                <div class="user-info">
+                                    <h4>Carlos Mendoza</h4>
+                                    <p>Sistemas Computacionales • Primer reporte</p>
+                                </div>
+                            </div>
+                            <div class="post-meta">
+                                <span class="post-date">Hace 5 horas</span>
+                                <span class="priority-badge priority-high">Alta</span>
+                            </div>
+                        </div>
+                        
+                        <div class="post-content">
+                            <p>¿Alguien sabe cómo hackear la plataforma de calificaciones? Necesito urgentemente cambiar mis notas del semestre pasado. 🚨</p>
+                            <p>Si alguien tiene experiencia en seguridad informática, por favor contácteme. Ofrezco buena recompensa.</p>
+                        </div>
+                        
+                        <img src="https://via.placeholder.com/300x150?text=Imagen+del+post" alt="Post image" class="post-image">
+                        
+                        <div class="post-tags">
+                            <span class="post-tag">#Ayuda</span>
+                            <span class="post-tag">#Seguridad</span>
+                            <span class="post-tag">#Urgente</span>
+                        </div>
+                        
+                        <div class="reports-section">
+                            <div class="reports-header">
+                                <h4 class="reports-title">Reportes</h4>
+                                <span class="reports-count">6 reportes</span>
+                            </div>
+                            <div class="report-item">
+                                <span class="report-reason">Actividad ilegal</span>
+                                <span class="report-count">4</span>
+                            </div>
+                            <div class="report-item">
+                                <span class="report-reason">Contenido inapropiado</span>
+                                <span class="report-count">2</span>
+                            </div>
+                        </div>
+                        
+                        <div class="post-actions">
+                            <button class="post-btn btn-delete">
+                                <i class='bx bx-trash'></i>
+                                Eliminar Publicación
+                            </button>
+                            <button class="post-btn btn-warn">
+                                <i class='bx bx-user-voice'></i>
+                                Suspender Usuario
+                            </button>
+                            <button class="post-btn btn-ignore">
+                                <i class='bx bx-check'></i>
+                                Ignorar Reportes
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Post 3 - Medium Priority -->
+                    <div class="reported-post medium">
+                        <div class="post-header">
+                            <div class="post-user">
+                                <div class="user-avatar">M</div>
+                                <div class="user-info">
+                                    <h4>Marco Flores</h4>
+                                    <p>Administración de Empresas • 1 reporte anterior</p>
+                                </div>
+                            </div>
+                            <div class="post-meta">
+                                <span class="post-date">Ayer, 15:30</span>
+                                <span class="priority-badge priority-medium">Media</span>
+                            </div>
+                        </div>
+                        
+                        <div class="post-content">
+                            <p>¡Hola comunidad! Estoy organizando una fiesta este viernes en mi departamento. 🎉🍻</p>
+                            <p>• Lugar: Departamento 304, Torre 2<br>• Hora: 9 PM hasta que aguanten<br>• Traer su propia bebida<br>• Música en vivo y karaoke</p>
+                            <p>¡Todos están invitados! Compartan con sus amigos.</p>
+                        </div>
+                        
+                        <div class="post-tags">
+                            <span class="post-tag">#Fiesta</span>
+                            <span class="post-tag">#EventoSocial</span>
+                            <span class="post-tag">#Comunidad</span>
+                        </div>
+                        
+                        <div class="reports-section">
+                            <div class="reports-header">
+                                <h4 class="reports-title">Reportes</h4>
+                                <span class="reports-count">3 reportes</span>
+                            </div>
+                            <div class="report-item">
+                                <span class="report-reason">Contenido no académico</span>
+                                <span class="report-count">2</span>
+                            </div>
+                            <div class="report-item">
+                                <span class="report-reason">Promoción de alcohol</span>
+                                <span class="report-count">1</span>
+                            </div>
+                        </div>
+                        
+                        <div class="post-actions">
+                            <button class="post-btn btn-approve">
+                                <i class='bx bx-check-circle'></i>
+                                Aprobar Publicación
+                            </button>
+                            <button class="post-btn btn-warn">
+                                <i class='bx bx-user-voice'></i>
+                                Advertir Usuario
+                            </button>
+                            <button class="post-btn btn-delete">
+                                <i class='bx bx-trash'></i>
+                                Eliminar
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Post 4 - Low Priority -->
+                    <div class="reported-post low">
+                        <div class="post-header">
+                            <div class="post-user">
+                                <div class="user-avatar">L</div>
+                                <div class="user-info">
+                                    <h4>Laura Hernández</h4>
+                                    <p>Lic. Administración • Sin reportes anteriores</p>
+                                </div>
+                            </div>
+                            <div class="post-meta">
+                                <span class="post-date">Hace 2 días</span>
+                                <span class="priority-badge priority-low">Baja</span>
+                            </div>
+                        </div>
+                        
+                        <div class="post-content">
+                            <p>¿Alguien más cree que el profesor Rodríguez es muy estricto con sus calificaciones? 😅</p>
+                            <p>Me parece injusto que nos exija tanto cuando sus clases no son tan claras. ¿Qué opinan?</p>
+                        </div>
+                        
+                        <div class="post-tags">
+                            <span class="post-tag">#Opinión</span>
+                            <span class="post-tag">#Profesores</span>
+                            <span class="post-tag">#Queja</span>
+                        </div>
+                        
+                        <div class="reports-section">
+                            <div class="reports-header">
+                                <h4 class="reports-title">Reportes</h4>
+                                <span class="reports-count">1 reporte</span>
+                            </div>
+                            <div class="report-item">
+                                <span class="report-reason">Falta de respeto a profesores</span>
+                                <span class="report-count">1</span>
+                            </div>
+                        </div>
+                        
+                        <div class="post-actions">
+                            <button class="post-btn btn-approve">
+                                <i class='bx bx-check-circle'></i>
+                                Aprobar Publicación
+                            </button>
+                            <button class="post-btn btn-ignore">
+                                <i class='bx bx-check'></i>
+                                Ignorar Reporte
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pagination -->
+                <div class="pagination">
+                    <button class="pagination-btn">
+                        <i class='bx bx-chevron-left'></i>
+                    </button>
+                    <button class="pagination-btn active">1</button>
+                    <button class="pagination-btn">2</button>
+                    <button class="pagination-btn">3</button>
+                    <span class="pagination-info">de 5 páginas</span>
+                    <button class="pagination-btn">
+                        <i class='bx bx-chevron-right'></i>
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

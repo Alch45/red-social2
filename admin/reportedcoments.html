@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comentarios Reportados - ComuniTec</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/comentarios.css">
+    <style>
+       
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="admin-brand">
+                <h1>ComuniTec <span>ADMIN</span></h1>
+                <p>Panel de Control</p>
+            </div>
+            
+            <nav class="admin-nav">
+                <div class="nav-section">
+                    <h3>Principal</h3>
+                    <a href="dashboard.html" class="nav-item">
+                        <i class='bx bx-home-alt'></i>
+                        Dashboard
+                    </a>
+                    <a href="estadisticas.html" class="nav-item">
+                        <i class='bx bx-stats'></i>
+                        Estadísticas
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <h3>Moderación</h3>
+                    <a href="publicaciones-reportadas.html" class="nav-item">
+                        <i class='bx bx-flag'></i>
+                        Publicaciones Reportadas
+                        <span class="nav-badge">12</span>
+                    </a>
+                    <a href="reportedcoments.html" class="nav-item active">
+                        <i class='bx bx-comment-dots'></i>
+                        Comentarios Reportados
+                        <span class="nav-badge">5</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <h3>Gestión de Usuarios</h3>
+                    <a href="newusers.html" class="nav-item">
+                        <i class='bx bx-user-plus'></i>
+                        Nuevos Usuarios
+                        <span class="nav-badge">8</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class='bx bx-group'></i>
+                        Todos los Usuarios
+                    </a>
+                    <a href="suspendedusers.html" class="nav-item">
+                        <i class='bx bx-user-x'></i>
+                        Usuarios Suspendidos
+                        <span class="nav-badge">3</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <h3>Contenido</h3>
+                    <a href="eventos.html" class="nav-item">
+                        <i class='bx bx-calendar-event'></i>
+                        Gestión de Eventos
+                    </a>
+                    <a href="allpublish.html" class="nav-item">
+                        <i class='bx bx-message-square'></i>
+                        Todas las Publicaciones
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <h3>Sistema</h3>
+                    <a href="configadmin.html" class="nav-item">
+                        <i class='bx bx-cog'></i>
+                        Configuración
+                    </a>
+                    <!-- <a href="#" class="nav-item">
+                        <i class='bx bx-shield-quarter'></i>
+                        Seguridad
+                    </a> -->
+                    <a href="#" class="nav-item">
+                        <i class='bx bx-log-out'></i>
+                        Cerrar Sesión
+                    </a>
+                </div>
+            </nav>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="admin-main">
+            <header class="admin-header">
+                <div class="admin-title">
+                    <h1>Comentarios Reportados</h1>
+                    <p>Gestiona y modera los comentarios reportados por la comunidad</p>
+                </div>
+                <div class="admin-actions">
+                    <button class="admin-btn btn-secondary">
+                        <i class='bx bx-export'></i>
+                        Exportar Reportes
+                    </button>
+                    <button class="admin-btn btn-primary">
+                        <i class='bx bx-filter-alt'></i>
+                        Filtros Avanzados
+                    </button>
+                </div>
+            </header>
+            
+            <div class="dashboard-content">
+                <!-- Quick Stats -->
+                <div class="quick-stats">
+                    <div class="stat-card">
+                        <div class="stat-value">5</div>
+                        <div class="stat-label">Comentarios Pendientes</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">12</div>
+                        <div class="stat-label">Total Reportados</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">3</div>
+                        <div class="stat-label">Usuarios Reincidentes</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">78%</div>
+                        <div class="stat-label">Tasa de Resolución</div>
+                    </div>
+                </div>
+                
+                <!-- Filters Section -->
+                <div class="filters-section">
+                    <div class="filters-grid">
+                        <div class="filter-group">
+                            <label class="filter-label">Prioridad</label>
+                            <select class="filter-select">
+                                <option value="">Todas las prioridades</option>
+                                <option value="urgent">Urgente</option>
+                                <option value="high">Alta</option>
+                                <option value="medium">Media</option>
+                                <option value="low">Baja</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">Estado</label>
+                            <select class="filter-select">
+                                <option value="">Todos los estados</option>
+                                <option value="pending">Pendiente</option>
+                                <option value="reviewed">Revisado</option>
+                                <option value="resolved">Resuelto</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">Tipo de Reporte</label>
+                            <select class="filter-select">
+                                <option value="">Todos los tipos</option>
+                                <option value="spam">Spam</option>
+                                <option value="harassment">Acoso</option>
+                                <option value="hate">Discurso de odio</option>
+                                <option value="inappropriate">Contenido inapropiado</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">Fecha</label>
+                            <input type="date" class="filter-input">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Reported Comments Container -->
+                <div class="reported-comments-container">
+                    <!-- Comment 1 - Urgent -->
+                    <div class="reported-comment urgent">
+                        <div class="comment-header">
+                            <div class="comment-user">
+                                <div class="user-avatar">R</div>
+                                <div class="user-info">
+                                    <h4>Roberto Silva</h4>
+                                    <p>Ing. Civil • 3 comentarios eliminados</p>
+                                </div>
+                            </div>
+                            <div class="comment-meta">
+                                <span class="comment-date">Hace 1 hora</span>
+                                <span class="priority-badge priority-urgent">Urgente</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Parent Post -->
+                        <div class="parent-post">
+                            <div class="parent-post-header">
+                                <div class="parent-avatar">M</div>
+                                <div class="parent-info">
+                                    <h5>María González</h5>
+                                    <p>Publicado hace 3 horas</p>
+                                </div>
+                            </div>
+                            <div class="parent-content">
+                                <p>Estoy organizando un grupo de estudio para el examen de Cálculo III. ¿Alguien se quiere unir? Podemos reunirnos en la biblioteca.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Comment Content -->
+                        <div class="comment-content">
+                            <div class="comment-text">
+                                <p>¿En serio necesitas ayuda con Cálculo? Eso es de lo más básico. Si no puedes con eso, mejor dedícate a otra cosa. La gente incompetente como tú no debería estar en la universidad.</p>
+                            </div>
+                            <div class="comment-context">
+                                Respuesta al comentario de María González
+                            </div>
+                        </div>
+                        
+                        <div class="reports-section">
+                            <div class="reports-header">
+                                <h4 class="reports-title">Reportes</h4>
+                                <span class="reports-count">7 reportes</span>
+                            </div>
+                            <div class="report-item">
+                                <span class="report-reason">Acoso e intimidación</span>
+                                <span class="report-count">4</span>
+                            </div>
+                            <div class="report-item">
+                                <span class="report-reason">Discurso de odio</span>
+                                <span class="report-count">3</span>
+                            </div>
+                        </div>
+                        
+                        <div class="comment-actions">
+                            <button class="comment-btn btn-delete">
+                                <i class='bx bx-trash'></i>
+                                Eliminar Comentario
+                            </button>
+                            <button class="comment-btn btn-warn">
+                                <i class='bx bx-user-voice'></i>
+                                Suspender Usuario
+                            </button>
+                            <button class="comment-btn btn-ignore">
+                                <i class='bx bx-check'></i>
+                                Ignorar Reportes
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Comment 2 - High Priority -->
+                    <div class="reported-comment high">
+                        <div class="comment-header">
+                            <div class="comment-user">
+                                <div class="user-avatar">J</div>
+                                <div class="user-info">
+                                    <h4>Javier López</h4>
+                                    <p>Lic. Derecho • 1 comentario eliminado</p>
+                                </div>
+                            </div>
+                            <div class="comment-meta">
+                                <span class="comment-date">Hace 3 horas</span>
+                                <span class="priority-badge priority-high">Alta</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Parent Post -->
+                        <div class="parent-post">
+                            <div class="parent-post-header">
+                                <div class="parent-avatar">C</div>
+                                <div class="parent-info">
+                                    <h5>Carlos Mendoza</h5>
+                                    <p>Publicado hace 5 horas</p>
+                                </div>
+                            </div>
+                            <div class="parent-content">
+                                <p>¿Alguien tiene los apuntes de la clase de Física del profesor Hernández? Se me perdieron mis notas y el examen es la próxima semana.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Comment Content -->
+                        <div class="comment-content">
+                            <div class="comment-text">
+                                <p>Yo tengo todos los apuntes completos y resueltos. Te los paso por $100. También tengo exámenes pasados con respuestas. Escríbeme al WhatsApp 555-1234 para más info. 🤑💰</p>
+                            </div>
+                            <div class="comment-context">
+                                Respuesta al comentario de Carlos Mendoza
+                            </div>
+                        </div>
+                        
+                        <div class="reports-section">
+                            <div class="reports-header">
+                                <h4 class="reports-title">Reportes</h4>
+                                <span class="reports-count">5 reportes</span>
+                            </div>
+                            <div class="report-item">
+                                <span class="report-reason">Spam comercial</span>
+                                <span class="report-count">3</span>
+                            </div>
+                            <div class="report-item">
+                                <span class="report-reason">Venta no autorizada</span>
+                                <span class="report-count">2</span>
+                            </div>
+                        </div>
+                        
+                        <div class="comment-actions">
+                            <button class="comment-btn btn-delete">
+                                <i class='bx bx-trash'></i>
+                                Eliminar Comentario
+                            </button>
+                            <button class="comment-btn btn-warn">
+                                <i class='bx bx-user-voice'></i>
+                                Advertir Usuario
+                            </button>
+                            <button class="comment-btn btn-ignore">
+                                <i class='bx bx-check'></i>
+                                Ignorar Reportes
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Comment 3 - Medium Priority -->
+                    <div class="reported-comment medium">
+                        <div class="comment-header">
+                            <div class="comment-user">
+                                <div class="user-avatar">S</div>
+                                <div class="user-info">
+                                    <h4>Sofia Ramirez</h4>
+                                    <p>Arquitectura • Sin reportes anteriores</p>
+                                </div>
+                            </div>
+                            <div class="comment-meta">
+                                <span class="comment-date">Ayer, 18:45</span>
+                                <span class="priority-badge priority-medium">Media</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Parent Post -->
+                        <div class="parent-post">
+                            <div class="parent-post-header">
+                                <div class="parent-avatar">D</div>
+                                <div class="parent-info">
+                                    <h5>David Chen</h5>
+                                    <p>Publicado ayer, 15:20</p>
+                                </div>
+                            </div>
+                            <div class="parent-content">
+                                <p>Acabo de publicar mi proyecto final de Programación Avanzada en GitHub. Es un sistema de gestión para bibliotecas usando Java y MySQL. ¿Alguien quiere revisarlo y darme feedback?</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Comment Content -->
+                        <div class="comment-content">
+                            <div class="comment-text">
+                                <p>Tu código es un desastre total. Ni siquiera sigues las convenciones básicas de Java. Con esas habilidades dudo que hayas pasado el primer semestre. Deberías reconsiderar tu carrera.</p>
+                            </div>
+                            <div class="comment-context">
+                                Respuesta al comentario de David Chen
+                            </div>
+                        </div>
+                        
+                        <div class="reports-section">
+                            <div class="reports-header">
+                                <h4 class="reports-title">Reportes</h4>
+                                <span class="reports-count">2 reportes</span>
+                            </div>
+                            <div class="report-item">
+                                <span class="report-reason">Comentario despectivo</span>
+                                <span class="report-count">2</span>
+                            </div>
+                        </div>
+                        
+                        <div class="comment-actions">
+                            <button class="comment-btn btn-approve">
+                                <i class='bx bx-check-circle'></i>
+                                Aprobar Comentario
+                            </button>
+                            <button class="comment-btn btn-warn">
+                                <i class='bx bx-user-voice'></i>
+                                Advertir Usuario
+                            </button>
+                            <button class="comment-btn btn-delete">
+                                <i class='bx bx-trash'></i>
+                                Eliminar
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Comment 4 - Low Priority -->
+                    <div class="reported-comment low">
+                        <div class="comment-header">
+                            <div class="comment-user">
+                                <div class="user-avatar">P</div>
+                                <div class="user-info">
+                                    <h4>Pedro Martínez</h4>
+                                    <p>Medicina • Sin reportes anteriores</p>
+                                </div>
+                            </div>
+                            <div class="comment-meta">
+                                <span class="comment-date">Hace 2 días</span>
+                                <span class="priority-badge priority-low">Baja</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Parent Post -->
+                        <div class="parent-post">
+                            <div class="parent-post-header">
+                                <div class="parent-avatar">A</div>
+                                <div class="parent-info">
+                                    <h5>Ana García</h5>
+                                    <p>Publicado hace 3 días</p>
+                                </div>
+                            </div>
+                            <div class="parent-content">
+                                <p>Estoy buscando recomendaciones de libros para el curso de Filosofía Contemporánea. ¿Alguien tiene sugerencias?</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Comment Content -->
+                        <div class="comment-content">
+                            <div class="comment-text">
+                                <p>Este grupo se está llenando de preguntas tontas. ¿En serio no sabes buscar en Google? Deberían hacer un examen de admisión más difícil para filtrar a gente como tú.</p>
+                            </div>
+                            <div class="comment-context">
+                                Respuesta al comentario de Ana García
+                            </div>
+                        </div>
+                        
+                        <div class="reports-section">
+                            <div class="reports-header">
+                                <h4 class="reports-title">Reportes</h4>
+                                <span class="reports-count">1 reporte</span>
+                            </div>
+                            <div class="report-item">
+                                <span class="report-reason">Falta de respeto</span>
+                                <span class="report-count">1</span>
+                            </div>
+                        </div>
+                        
+                        <div class="comment-actions">
+                            <button class="comment-btn btn-approve">
+                                <i class='bx bx-check-circle'></i>
+                                Aprobar Comentario
+                            </button>
+                            <button class="comment-btn btn-ignore">
+                                <i class='bx bx-check'></i>
+                                Ignorar Reporte
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pagination -->
+                <div class="pagination">
+                    <button class="pagination-btn">
+                        <i class='bx bx-chevron-left'></i>
+                    </button>
+                    <button class="pagination-btn active">1</button>
+                    <button class="pagination-btn">2</button>
+                    <button class="pagination-btn">3</button>
+                    <span class="pagination-info">de 3 páginas</span>
+                    <button class="pagination-btn">
+                        <i class='bx bx-chevron-right'></i>
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

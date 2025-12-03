@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ComuniTec</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    <script src="javascript/auth.js"></script>
+</head>
+
+<body>
+    <header class="header-main">
+        <div class="header-container">
+            <div class="header-brand">
+                <div class="logo-container">
+                    <h1 class="logo-text">ComuniTec</h1>
+                </div>
+            </div>
+            <div class="header-search">
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" placeholder="Buscar compañeros, grupos o temas..." class="search-input">
+                    <button class="search-filters">⚙️</button>
+                </div>
+            </div>
+            <div class="header-actions">
+                <div class="notification-container">
+                    <button class="notification-btn" aria-label="Notificaciones">
+                        <span class="notification-icon"><img src="img/campana.png" alt=""></span>
+                    </button>
+                </div>
+                <div class="profile-container">
+                    <div class="profile-dropdown">
+                        <div class="profile-avatar">
+                            
+                        </div>
+                        <span class="profile-arrow">▼</span>
+                        <div class="profile-menu">
+                            <div class="profile-info">
+                                <div class="profile-name"></div>
+                                <div class="profile-email"></div>
+                            </div>
+                            <div class="menu-divider"></div>
+                            <a href="perfil.html" class="menu-item">
+                                <span class="menu-icon"><img src="img/usuario2.png" alt=""></span>
+                                Mi Perfil
+                            </a>
+                            <a href="configuracion.html" class="menu-item">
+                                <span class="menu-icon"><img src="img/configuracion.png" alt=""></span>
+                                Configuración
+                            </a>
+                            <div class="menu-divider"></div>
+                            <a href="index.html" class="menu-item logout">
+                                <span class="menu-icon">🚪</span>
+                                Cerrar Sesión
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Sidebar Izquierdo -->
+     <aside class="sidebar-izquierdo">
+        <div class="user-profile-card">
+            <div class="user-avatar-large"><img src="img/usuario2.png" alt=""></div>
+            <div class="user-info-profile">
+                <h4 class="user-name-profile"></h4>
+                <p class="user-career-profile"></p>
+                <span class="user-status">🟢 En línea</span>
+            </div>
+        </div>
+        <nav class="menu-principal">
+            <h3>Menu Principal</h3>
+            <ul class="menu-items">
+                <li>
+                    <a href="#" class="menu-link selected">
+                        <img src="img/megafono.png" alt="news">
+                        <span>Feed de Noticias</span>
+                        <span class="menu-badge">12</span>
+                    </a>
+                </li>
+                <li class="menu-with-dropdown">
+                    <a href="perfil.html" class="menu-link dropdown-toggle">
+                        <img src="img/usuario.png" alt="user">
+                        <span>Mi Perfil</span>
+                    </a>
+                </li>
+                <li class="menu-with-dropdown">
+                    <a href="comunidades.html" class="menu-link dropdown-toggle">
+                        <img src="img/equipo.png" alt="communities">
+                        <span>Comunidades</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="eventos.html" class="menu-link">
+                        <img src="img/calendario.png" alt="events">
+                        <span>Eventos Universitarios</span>
+                        <span class="menu-badge new">3</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="mensajes.html" class="menu-link">
+                        <img src="img/comentario.png" alt="messages">
+                        <span>Mensajes Privados</span>
+                        <span class="menu-badge">5</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="divider"></div>
+        <!-- Acciones Rápidas -->
+        <div class="quick-actions">
+            <h3>Acciones Rápidas</h3>
+            <div class="action-buttons">
+                <button class="action-btn primary">
+                    <span class="action-icon">📚</span>
+                     <a href="comunidades.html">Unirse a una comunidad</a>
+                </button>
+                <button  class="action-btn secondary">
+                    <span class="action-icon">👥</span>
+                    Crear Comunidad
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Sección principal del feed -->
+     <section class="feed-container">
+        <h2 class="feed-title">Feed Universitario</h2>
+        <div class="create-post">
+            <div class="create-post-header">
+                <div class="create-post-avatar"></div>
+                <div>
+                    <div class="user-name"></div>
+                    <div class="user-career"></div>
+                </div>
+            </div>
+            <textarea
+                placeholder="¿Qué estás pensando? Comparte tus ideas académicas, preguntas o logros..."></textarea>
+            <div class="post-actions">
+                <div class="attach-options">
+                    <div class="attach-option">
+                        <span class="attach-icon">📷</span>
+                        <span>Foto</span>
+                    </div>
+                    <div class="attach-option">
+                        <span class="attach-icon">📁</span>
+                        <span>Archivo</span>
+                    </div>
+                </div>
+                <button class="publish-btn">Publicar</button>
+            </div>
+        </div> 
+        <div class="post">
+            <div class="post-header">
+                <div class="user-avatar primary">A</div>
+                <div class="user-info">
+                    <h4 class="user-name">Ana García</h4>
+                    <p class="user-career">Ingeniería de Software</p>
+                    <span class="post-time">Hace 5 minutos</span>
+                </div>
+            </div>
+            <div class="post-content">
+                <p>¿Alguien más está batallando con la Tarea 4 de Cálculo Avanzado? ¡Necesito un grupo de estudio
+                    urgente! 📚</p>
+                <p>Si alguien quiere formar un grupo de estudio, estaré en la biblioteca a las 4 PM. ¡Llevaré café! ☕
+                </p>
+            </div>
+            <div class="post-tags">
+                <span class="post-tag">#Cálculo</span>
+                <span class="post-tag">#GrupoEstudio</span>
+                <span class="post-tag">#Ingeniería</span>
+            </div>
+            <div class="post-stats">
+                <span>15 me gusta</span>
+                <span>8 comentarios</span>
+                <span>3 compartidos</span>
+            </div>
+            <div class="post-footer">
+                <button class="post-action-btn">
+                    <img src="img/corazon.png" alt="Me gusta">
+                    <span>Me gusta</span>
+                </button>
+                <button class="post-action-btn">
+                    <img src="https://img.icons8.com/?size=100&id=38977&format=png&color=000000" alt="Comentar">
+                    <span>Comentar</span>
+                </button>
+                <button class="post-action-btn">
+                    <span class="attach-icon"> <img src="img/share.png" alt=""></span>
+                    <span>Compartir</span>
+                </button>
+            </div>
+        </div>
+        <div class="post">
+            <div class="post-header">
+                <div class="user-avatar secondary">M</div>
+                <div class="user-info">
+                    <h4 class="user-name">Marco Flores</h4>
+                    <p class="user-career">Administración de Empresas</p>
+                    <span class="post-time">Hace 1 hora</span>
+                </div>
+            </div>
+            <div class="post-content">
+                <p>¡Hola comunidad! Estoy vendiendo mangos con chile caseros 🥭🌶️</p>
+                <div class="mango-container">
+                    <img src="https://diario.elmundo.sv/elmundo/uploads/images/2022/12/28/31893.png" alt="imagen">
+                </div>
+                <p>• Paquete pequeño: $25<br>
+                    • Paquete grande: $40<br>
+                    • Incluye chilito especial de la casa</p>
+                <p>Interesados, mándenme un DM. ¡Apoyen el emprendimiento estudiantil! 💪</p>
+            </div>
+            <div class="post-tags">
+                <span class="post-tag">#Emprendimiento</span>
+                <span class="post-tag">#Comida</span>
+                <span class="post-tag">#Negocios</span>
+            </div>
+            <div class="post-stats">
+                <span> 28 me gusta</span>
+                <span>15 comentarios</span>
+                <span>5 compartidos</span>
+            </div>
+            <div class="post-footer">
+                <button class="post-action-btn">
+                    <img src="img/corazon.png" alt="Me gusta">
+                    <span>Me gusta</span>
+                </button>
+                <button class="post-action-btn">
+                    <img src="https://img.icons8.com/?size=100&id=38977&format=png&color=000000" alt="Comentar">
+                    <span>Comentar</span>
+                </button>
+                <button class="post-action-btn">
+                    <span class="attach-icon"> <img src="img/share.png" alt=""></span>
+                    <span>Compartir</span>
+                </button>
+            </div>
+        </div>
+        <div class="post">
+            <div class="post-header">
+                <div class="user-avatar tertiary">C</div>
+                <div class="user-info">
+                    <h4 class="user-name">Carlos Rodríguez</h4>
+                    <p class="user-career">Sistemas Computacionales</p>
+                    <span class="post-time">Hace 3 horas</span>
+                </div>
+            </div>
+            <div class="post-content">
+                <p>🚀 ¡Gran noticia! El hackathon de programación será el próximo mes. ¿Alguien quiere formar equipo?
+                </p>
+                <p>Tengo experiencia en:<br>
+                    • Desarrollo web (React, Node.js)<br>
+                    • Bases de datos (MySQL, MongoDB)<br>
+                    • APIs REST</p>
+                <p>Busco personas con habilidades en diseño UI/UX o machine learning. ¡Juntos podemos ganar! 💪</p>
+            </div>
+            <div class="post-tags">
+                <span class="post-tag">#Hackathon</span>
+                <span class="post-tag">#Programación</span>
+                <span class="post-tag">#Equipo</span>
+                <span class="post-tag">#Tecnología</span>
+            </div>
+            <div class="post-stats">
+                <span>42 me gusta</span>
+                <span>23 comentarios</span>
+                <span>12 compartidos</span>
+            </div>
+            <div class="post-footer">
+                <button class="post-action-btn">
+                    <img src="img/corazon.png" alt="Me gusta">
+                    <span>Me gusta</span>
+                </button>
+                <button class="post-action-btn">
+                    <img src="https://img.icons8.com/?size=100&id=38977&format=png&color=000000" alt="Comentar">
+                    <span>Comentar</span>
+                </button>
+                <button class="post-action-btn">
+                    <span class="attach-icon"> <img src="img/share.png" alt=""></span>
+                    <span>Compartir</span>
+                </button>
+            </div>
+        </div>
+
+    </section>
+    <!-- Columna Derecha -->
+    <aside class="sidebar-derecha">
+        <div class="card crear-nuevo">
+            <h3>Crear Nuevo</h3>
+            <button class="btn btn-verde">+ Nueva Publicación</button>
+            <button class="btn btn-azul">+ Iniciar Nuevo Grupo</button>
+        </div>
+        <div class="card grupos-populares">
+            <h3>Comunidades populares</h3>
+            <ul class="lista-grupos">
+                <li>
+                    <span class="punto rojo"></span>
+                    <div class="grupo-info">
+                        <span class="nombre-grupo">Cálculo Vectorial</span>
+                        <span class="miembros">35 miembros</span>
+                    </div>
+                </li>
+                <li>
+                    <span class="punto morado"></span>
+                    <div class="grupo-info">
+                        <span class="nombre-grupo">Seminario de Tesis</span>
+                        <span class="miembros">12 miembros</span>
+                    </div>
+                </li>
+                <li>
+                    <span class="punto azul"></span>
+                    <div class="grupo-info">
+                        <span class="nombre-grupo">Diseño UX/UI</span>
+                        <span class="miembros">58 miembros</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="card eventos-proximos">
+            <h3>Eventos Próximos</h3>
+            <ul class="lista-eventos">
+                <li>
+                    <p class="titulo-evento">Feria de Tics</p>
+                    <span class="fecha">Oct 20</span>
+                </li>
+                <li>
+                    <p class="titulo-evento">Conferencia Dia de la Mujer</p>
+                    <span class="fecha">Nov 5</span>
+                </li>
+                <li>
+                    <p class="titulo-evento">Homenaje</p>
+                    <span class="fecha">Nov 18</span>
+                </li>
+            </ul>
+        </div>
+
+    </aside>
+    <script src="javascript/feed.js"></script>
+</body>
+</html>

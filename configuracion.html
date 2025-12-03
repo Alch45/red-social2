@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuración - ComuniTec</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/configuracion.css">
+     <link rel="icon" type="image/png" href="img/favicon.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="javascript/auth.js"></script>
+</head>
+<body>
+    <!-- Header existente -->
+    <header class="header-main">
+        <div class="header-container">
+            <div class="header-brand">
+                <div class="logo-container">
+                    <a href="main.html"><img class="return" src="img/regresar.png" alt="Regresar"></a>
+                    <h1 class="logo-text">ComuniTec</h1>
+                </div>
+            </div>
+            <div class="header-search">
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" placeholder="Buscar en configuración..." class="search-input" id="configSearch">
+                </div>
+            </div>
+            <div class="header-actions">
+                <div class="profile-container">
+                    <div class="profile-dropdown">
+                        <div class="profile-avatar" id="configHeaderAvatar"><!-- JS se encargará --></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido principal -->
+    <div class="configuracion-container">
+        <div class="configuracion-sidebar">
+            <div class="user-profile-card">
+                <div class="user-avatar-large">
+                    <div class="avatar-iniciales" id="configUserAvatar"><!-- JS se encargará --></div>
+                </div>
+                <div class="user-info-profile">
+                    <h4 id="configUserName"><!-- JS se encargará --></h4>
+                    <p class="user-career-profile" id="configUserCareer"><!-- JS se encargará --></p>
+                    <p class="user-status" id="configUserEmail"><!-- JS se encargará --></p>
+                </div>
+            </div>
+
+            <nav class="configuracion-menu">
+                <a href="#perfil" class="menu-config-item active" data-section="perfil">
+                    <i class="bi bi-person"></i>
+                    <span>Perfil Público</span>
+                </a>
+                <a href="#privacidad" class="menu-config-item" data-section="privacidad">
+                    <i class="bi bi-shield-lock"></i>
+                    <span>Privacidad</span>
+                </a>
+                <a href="#notificaciones" class="menu-config-item" data-section="notificaciones">
+                    <i class="bi bi-bell"></i>
+                    <span>Notificaciones</span>
+                </a>
+                <a href="#apariencia" class="menu-config-item" data-section="apariencia">
+                    <i class="bi bi-palette"></i>
+                    <span>Apariencia</span>
+                </a>
+                <a href="#cuenta" class="menu-config-item" data-section="cuenta">
+                    <i class="bi bi-gear"></i>
+                    <span>Configuración de Cuenta</span>
+                </a>
+                <a href="#ayuda" class="menu-config-item" data-section="ayuda">
+                    <i class="bi bi-question-circle"></i>
+                    <span>Ayuda y Soporte</span>
+                </a>
+                <a href="#cerrar-sesion" class="menu-config-item logout-btn" data-section="cerrar-sesion">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Cerrar Sesión</span>
+                </a>
+            </nav>
+        </div>
+
+        <div class="configuracion-content">
+            <!-- Sección Perfil -->
+            <section id="perfil" class="config-section active">
+                <div class="section-header">
+                    <h2>Perfil Público</h2>
+                    <p>Gestiona cómo te ven los demás en ComuniTec</p>
+                </div>
+
+                <div class="config-card">
+                    <div class="foto-perfil-config">
+                        <div class="foto-actual">
+                            <div class="avatar-grande" id="profileBigAvatar"><!-- JS se encargará --></div>
+                        </div>
+                        <div class="acciones-foto">
+                            <button class="btn btn-primary btn-sm" id="changePhotoBtn">
+                                <i class="bi bi-camera"></i> Cambiar Foto
+                            </button>
+                            <button class="btn btn-outline-secondary btn-sm" id="removePhotoBtn">
+                                <i class="bi bi-trash"></i> Eliminar
+                            </button>
+                        </div>
+                    </div>
+
+                    <form class="form-config" id="profileForm">
+                        <div class="form-group">
+                            <label for="nombre">Nombre Completo</label>
+                            <input type="text" id="nombre" class="form-control" placeholder="Ingresa tu nombre completo">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="carrera">Carrera</label>
+                            <select id="carrera" class="form-control">
+                                <option value="">Selecciona tu carrera</option>
+                                <option value="Ingeniería de Software">Ingeniería de Software</option>
+                                <option value="Ingeniería en Sistemas">Ingeniería en Sistemas</option>
+                                <option value="Ingeniería Informática">Ingeniería Informática</option>
+                                <option value="Sistemas Computacionales">Sistemas Computacionales</option>
+                                <option value="Otra">Otra</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Correo Electrónico</label>
+                            <input type="email" id="email" class="form-control" placeholder="tu-email@tecnm.mx">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bio">Biografía</label>
+                            <textarea id="bio" class="form-control" rows="4" placeholder="Cuéntanos sobre ti... (máximo 500 caracteres)" maxlength="500"></textarea>
+                            <div class="char-counter"><span id="bioChars">0</span>/500 caracteres</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="intereses">Intereses Académicos</label>
+                            <div class="tags-input" id="tagsContainer">
+                                <input type="text" placeholder="Añadir interés y presiona Enter..." class="tag-input" id="tagInput">
+                            </div>
+                            <small class="text-muted">Presiona Enter para agregar cada interés</small>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" id="cancelProfileBtn">Cancelar</button>
+                            <button type="submit" class="btn btn-primary" id="saveProfileBtn">
+                                <span class="btn-loading spinner-border spinner-border-sm d-none" role="status"></span>
+                                Guardar Cambios
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Sección Privacidad -->
+            <section id="privacidad" class="config-section">
+                <div class="section-header">
+                    <h2>Privacidad</h2>
+                    <p>Controla quién puede ver tu información y actividad</p>
+                </div>
+
+                <div class="config-card">
+                    <h4>Visibilidad del Perfil</h4>
+                    <div class="privacy-option">
+                        <div class="option-info">
+                            <h5>Perfil Público</h5>
+                            <p>Tu perfil puede ser visto por cualquier usuario de ComuniTec</p>
+                        </div>
+                        <div class="option-control">
+                            <label class="switch">
+                                <input type="checkbox" id="profilePublic" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="privacy-option">
+                        <div class="option-info">
+                            <h5>Mostrar Email</h5>
+                            <p>Otros usuarios pueden ver tu dirección de correo electrónico</p>
+                        </div>
+                        <div class="option-control">
+                            <label class="switch">
+                                <input type="checkbox" id="showEmail">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <h4 class="mt-4">Actividad</h4>
+                    <div class="privacy-option">
+                        <div class="option-info">
+                            <h5>Visibilidad de Publicaciones</h5>
+                            <p>Quién puede ver tus publicaciones por defecto</p>
+                        </div>
+                        <div class="option-control">
+                            <select class="form-control" id="postVisibility">
+                                <option value="public">Público</option>
+                                <option value="friends">Solo Amigos</option>
+                                <option value="private">Solo Yo</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="privacy-option">
+                        <div class="option-info">
+                            <h5>Permitir Mensajes</h5>
+                            <p>Quién puede enviarte mensajes privados</p>
+                        </div>
+                        <div class="option-control">
+                            <select class="form-control" id="messagePrivacy">
+                                <option value="everyone">Todos los usuarios</option>
+                                <option value="friends">Solo Amigos</option>
+                                <option value="none">Nadie</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sección Notificaciones -->
+            <section id="notificaciones" class="config-section">
+                <div class="section-header">
+                    <h2>Notificaciones</h2>
+                    <p>Gestiona cómo y cuándo recibes notificaciones</p>
+                </div>
+
+                <div class="config-card">
+                    <h4>Notificaciones por Email</h4>
+                    <div class="notification-option">
+                        <div class="option-info">
+                            <h5>Nuevos Mensajes</h5>
+                            <p>Recibir notificaciones cuando recibas nuevos mensajes</p>
+                        </div>
+                        <div class="option-control">
+                            <label class="switch">
+                                <input type="checkbox" id="emailMessages" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="notification-option">
+                        <div class="option-info">
+                            <h5>Actividad en Publicaciones</h5>
+                            <p>Notificaciones cuando alguien comente o reaccione a tus publicaciones</p>
+                        </div>
+                        <div class="option-control">
+                            <label class="switch">
+                                <input type="checkbox" id="emailPostActivity" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="notification-option">
+                        <div class="option-info">
+                            <h5>Noticias y Anuncios</h5>
+                            <p>Recibir noticias importantes y anuncios de la plataforma</p>
+                        </div>
+                        <div class="option-control">
+                            <label class="switch">
+                                <input type="checkbox" id="emailNews">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <h4 class="mt-4">Notificaciones Push</h4>
+                    <div class="notification-option">
+                        <div class="option-info">
+                            <h5>Recordatorios de Eventos</h5>
+                            <p>Recordatorios de eventos y fechas importantes</p>
+                        </div>
+                        <div class="option-control">
+                            <label class="switch">
+                                <input type="checkbox" id="pushEvents">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="notification-option">
+                        <div class="option-info">
+                            <h5>Solicitudes de Amistad</h5>
+                            <p>Notificaciones cuando recibas nuevas solicitudes de amistad</p>
+                        </div>
+                        <div class="option-control">
+                            <label class="switch">
+                                <input type="checkbox" id="pushFriendRequests" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sección Apariencia -->
+            <section id="apariencia" class="config-section">
+                <div class="section-header">
+                    <h2>Apariencia</h2>
+                    <p>Personaliza la apariencia de ComuniTec</p>
+                </div>
+
+                <div class="config-card">
+                    <h4>Tema de la Aplicación</h4>
+                    <div class="theme-options">
+                        <div class="theme-option" data-theme="light">
+                            <div class="theme-preview light-theme"></div>
+                            <span>Claro</span>
+                        </div>
+                        <div class="theme-option active" data-theme="dark">
+                            <div class="theme-preview dark-theme"></div>
+                            <span>Oscuro</span>
+                        </div>
+                        <div class="theme-option" data-theme="auto">
+                            <div class="theme-preview auto-theme"></div>
+                            <span>Automático</span>
+                        </div>
+                    </div>
+
+                    <h4 class="mt-4">Tamaño de Fuente</h4>
+                    <div class="font-size-options">
+                        <button class="font-size-btn" data-size="small">Pequeño</button>
+                        <button class="font-size-btn active" data-size="medium">Mediano</button>
+                        <button class="font-size-btn" data-size="large">Grande</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sección Cuenta -->
+            <section id="cuenta" class="config-section">
+                <div class="section-header">
+                    <h2>Configuración de Cuenta</h2>
+                    <p>Gestiona los ajustes de tu cuenta</p>
+                </div>
+
+                <div class="config-card">
+                    <h4>Información de la Cuenta</h4>
+                    <div class="account-option">
+                        <div class="option-info">
+                            <h5>Cambiar Contraseña</h5>
+                            <p>Actualiza tu contraseña de acceso</p>
+                        </div>
+                        <button class="btn btn-outline-primary" id="changePasswordBtn">Cambiar</button>
+                    </div>
+
+                    <div class="account-option">
+                        <div class="option-info">
+                            <h5>Descargar Datos</h5>
+                            <p>Descarga una copia de tu información personal</p>
+                        </div>
+                        <button class="btn btn-outline-primary" id="downloadDataBtn">Descargar</button>
+                    </div>
+
+                    <h4 class="mt-4 text-danger">Zona de Peligro</h4>
+                    <div class="account-option danger-zone">
+                        <div class="option-info">
+                            <h5>Eliminar Cuenta</h5>
+                            <p>Elimina permanentemente tu cuenta y todos tus datos</p>
+                        </div>
+                        <button class="btn btn-danger" id="deleteAccountBtn">Eliminar Cuenta</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sección Ayuda -->
+            <section id="ayuda" class="config-section">
+                <div class="section-header">
+                    <h2>Ayuda y Soporte</h2>
+                    <p>Encuentra ayuda y soporte para ComuniTec</p>
+                </div>
+
+                <div class="config-card">
+                    <div class="help-options">
+                        <div class="help-option">
+                            <i class="bi bi-question-circle-fill"></i>
+                            <div>
+                                <h5>Centro de Ayuda</h5>
+                                <p>Encuentra respuestas a preguntas frecuentes</p>
+                            </div>
+                            <button class="btn btn-outline-primary">Abrir</button>
+                        </div>
+
+                        <div class="help-option">
+                            <i class="bi bi-chat-left-text-fill"></i>
+                            <div>
+                                <h5>Contactar Soporte</h5>
+                                <p>Comunícate con nuestro equipo de soporte</p>
+                            </div>
+                            <button class="btn btn-outline-primary">Contactar</button>
+                        </div>
+
+                        <div class="help-option">
+                            <i class="bi bi-info-circle-fill"></i>
+                            <div>
+                                <h5>Acerca de ComuniTec</h5>
+                                <p>Información sobre la aplicación y versión</p>
+                            </div>
+                            <button class="btn btn-outline-primary">Ver Info</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Modal para cambiar contraseña -->
+    <div class="modal fade" id="changePasswordModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Cambiar Contraseña</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="passwordForm">
+                        <div class="mb-3">
+                            <label for="currentPassword" class="form-label">Contraseña Actual</label>
+                            <input type="password" class="form-control" id="currentPassword" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="newPassword" class="form-label">Nueva Contraseña</label>
+                            <input type="password" class="form-control" id="newPassword" required minlength="6">
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirmPassword" class="form-label">Confirmar Nueva Contraseña</label>
+                            <input type="password" class="form-control" id="confirmPassword" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="savePasswordBtn">Cambiar Contraseña</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="javascript/configuracion.js"></script>
+</body>
+</html>

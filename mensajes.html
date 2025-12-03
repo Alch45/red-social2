@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensajes - ComuniTec</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/mensajes.css">
+     <link rel="icon" type="image/png" href="img/favicon.png">
+     <script src="javascript/auth.js"></script>
+</head>
+<body>
+    <header class="header-main">
+    <div class="header-container">
+        <div class="header-brand">
+            <div class="logo-container">
+                <a href="main.html"><img class="return" src="img/regresar.png" alt=""></a>
+                <h1 class="logo-text">ComuniTec</h1>
+            </div>
+        </div>
+        <div class="header-actions">
+            <div class="notification-container">
+                <button class="notification-btn" aria-label="Notificaciones">
+                    <span class="notification-icon">🔔</span>
+                    <span class="notification-badge">3</span>
+                </button>
+            </div>
+            <div class="profile-container">
+                <div class="profile-dropdown">
+                    <div class="profile-avatar">
+                        A
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+    <main class="mensajes-container">
+        <div class="chats-fullview">
+            <div class="chats-header">
+                <h2>Mensajes</h2>
+                <button class="nuevo-chat-btn">+ Nuevo chat</button>
+            </div>          
+            <div class="chats-search">
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" placeholder="Buscar conversaciones...">
+                </div>
+            </div>
+            
+            <div class="chats-list">
+                <div class="chat-item">
+                    <div class="chat-avatar">M</div>
+                    <div class="chat-info">
+                        <div class="chat-header">
+                            <span class="chat-name">María Rodríguez</span>
+                            <span class="chat-time">10:30 AM</span>
+                        </div>
+                        <div class="chat-preview">
+                            <span>¿Vas a ir a la sesión de estudio?</span>
+                            <span class="unread-badge">3</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-item">
+                    <div class="chat-avatar">C</div>
+                    <div class="chat-info">
+                        <div class="chat-header">
+                            <span class="chat-name">Carlos López</span>
+                            <span class="chat-time">Ayer</span>
+                        </div>
+                        <div class="chat-preview">
+                            <span>Te envié el material de programación</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-item">
+                    <div class="chat-avatar">J</div>
+                    <div class="chat-info">
+                        <div class="chat-header">
+                            <span class="chat-name">Juan Pérez</span>
+                            <span class="chat-time">11 Nov</span>
+                        </div>
+                        <div class="chat-preview">
+                            <span>✅ Listo, nos vemos mañana</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chat 5 -->
+                <div class="chat-item">
+                    <div class="chat-avatar">S</div>
+                    <div class="chat-info">
+                        <div class="chat-header">
+                            <span class="chat-name">Sofia Martínez</span>
+                            <span class="chat-time">10 Nov</span>
+                        </div>
+                        <div class="chat-preview">
+                            <span>¿Tienes los apuntes de física?</span>
+                            <span class="unread-badge">1</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="chat-empty">
+            <div class="empty-state">
+                <div class="empty-icon">💬</div>
+                <h3>Tus mensajes</h3>
+                <p>Selecciona un chat para empezar una conversación</p>
+            </div>
+        </div>
+    </main>
+</body>
+<script src="javascript/mensajes.js"></script>
+</html>

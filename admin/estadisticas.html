@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estadísticas - ComuniTec</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/estadisticas.css">  
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="admin-brand">
+                <h1>ComuniTec <span>ADMIN</span></h1>
+                <p>Panel de Control</p>
+            </div>
+            
+            <nav class="admin-nav">
+                <div class="nav-section">
+                    <h3>Principal</h3>
+                    <a href="dashboard.html" class="nav-item">
+                        <i class='bx bx-home-alt'></i>
+                        Dashboard
+                    </a>
+                    <a href="#" class="nav-item active">
+                        <i class='bx bx-stats'></i>
+                        Estadísticas
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <h3>Moderación</h3>
+                    <a href="reportedpublics.html" class="nav-item">
+                        <i class='bx bx-flag'></i>
+                        Publicaciones Reportadas
+                        <span class="nav-badge">12</span>
+                    </a>
+                    <a href="reportedcoments.html" class="nav-item">
+                        <i class='bx bx-comment-dots'></i>
+                        Comentarios Reportados
+                        <span class="nav-badge">5</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <h3>Gestión de Usuarios</h3>
+                    <a href="newusers.html" class="nav-item">
+                        <i class='bx bx-user-plus'></i>
+                        Nuevos Usuarios
+                        <span class="nav-badge">8</span>
+                    </a>
+                    <a href="allusers.html" class="nav-item">
+                        <i class='bx bx-group'></i>
+                        Todos los Usuarios
+                    </a>
+                    <a href="suspendedusers.html" class="nav-item">
+                        <i class='bx bx-user-x'></i>
+                        Usuarios Suspendidos
+                        <span class="nav-badge">3</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <h3>Contenido</h3>
+                    <a href="eventos.html" class="nav-item">
+                        <i class='bx bx-calendar-event'></i>
+                        Gestión de Eventos
+                    </a>
+                    <a href="allpublish.html" class="nav-item">
+                        <i class='bx bx-message-square'></i>
+                        Todas las Publicaciones
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <h3>Sistema</h3>
+                    <a href="configadmin.html" class="nav-item">
+                        <i class='bx bx-cog'></i>
+                        Configuración
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class='bx bx-shield-quarter'></i>
+                        Seguridad
+                    </a>
+                    <a href="index.html" class="nav-item">
+                        <i class='bx bx-log-out'></i>
+                        Cerrar Sesión
+                    </a>
+                </div>
+            </nav>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="admin-main">
+            <header class="admin-header">
+                <div class="admin-title">
+                    <h1>Estadísticas de ComuniTec</h1>
+                    <p>Análisis detallado de la actividad en la plataforma</p>
+                </div>
+                <div class="admin-actions">
+                    <button class="admin-btn btn-secondary">
+                        <i class='bx bx-download'></i>
+                        Exportar Datos
+                    </button>
+                    <button class="admin-btn btn-primary">
+                        <i class='bx bx-refresh'></i>
+                        Actualizar
+                    </button>
+                </div>
+            </header>
+            
+            <div class="dashboard-content">
+                <!-- Stats Tabs -->
+                <div class="stats-tabs">
+                    <div class="stats-tab active" data-tab="general">General</div>
+                    <div class="stats-tab" data-tab="usuarios">Usuarios</div>
+                    <div class="stats-tab" data-tab="contenido">Contenido</div>
+                    <div class="stats-tab" data-tab="eventos">Eventos</div>
+                </div>
+                
+                <!-- General Stats Tab -->
+                <div class="tab-content active" id="general-tab">
+                    <!-- Stats Grid -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <div class="stat-title">Usuarios Activos</div>
+                                <div class="stat-icon primary">
+                                    <i class='bx bx-user'></i>
+                                </div>
+                            </div>
+                            <div class="stat-value">1,248</div>
+                            <div class="stat-change positive">
+                                <i class='bx bx-up-arrow-alt'></i>
+                                5.2% desde la semana pasada
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card warning">
+                            <div class="stat-header">
+                                <div class="stat-title">Reportes Pendientes</div>
+                                <div class="stat-icon warning">
+                                    <i class='bx bx-flag'></i>
+                                </div>
+                            </div>
+                            <div class="stat-value">17</div>
+                            <div class="stat-change negative">
+                                <i class='bx bx-down-arrow-alt'></i>
+                                2.1% desde ayer
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card danger">
+                            <div class="stat-header">
+                                <div class="stat-title">Publicaciones Eliminadas</div>
+                                <div class="stat-icon danger">
+                                    <i class='bx bx-trash'></i>
+                                </div>
+                            </div>
+                            <div class="stat-value">24</div>
+                            <div class="stat-change positive">
+                                <i class='bx bx-up-arrow-alt'></i>
+                                12.5% este mes
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card success">
+                            <div class="stat-header">
+                                <div class="stat-title">Eventos Activos</div>
+                                <div class="stat-icon success">
+                                    <i class='bx bx-calendar'></i>
+                                </div>
+                            </div>
+                            <div class="stat-value">8</div>
+                            <div class="stat-change positive">
+                                <i class='bx bx-up-arrow-alt'></i>
+                                3 nuevos esta semana
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Charts -->
+                    <div class="content-grid">
+                        <div class="left-column">
+                            <div class="chart-container">
+                                <div class="chart-header">
+                                    <h2 class="chart-title">Actividad de Usuarios (Últimos 30 días)</h2>
+                                    <div class="chart-actions">
+                                        <button class="chart-action">
+                                            <i class='bx bx-filter'></i>
+                                            Filtrar
+                                        </button>
+                                        <button class="chart-action">
+                                            <i class='bx bx-dots-vertical-rounded'></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <canvas id="userActivityChart"></canvas>
+                            </div>
+                            
+                            <div class="chart-container">
+                                <div class="chart-header">
+                                    <h2 class="chart-title">Distribución de Publicaciones por Categoría</h2>
+                                    <div class="chart-actions">
+                                        <button class="chart-action">
+                                            <i class='bx bx-dots-vertical-rounded'></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <canvas id="categoryDistributionChart"></canvas>
+                            </div>
+                        </div>
+                        
+                        <div class="right-column">
+                            <div class="comparison-card">
+                                <div class="comparison-header">
+                                    <h3 class="comparison-title">Tasa de Crecimiento</h3>
+                                    <div class="stat-icon primary">
+                                        <i class='bx bx-trending-up'></i>
+                                    </div>
+                                </div>
+                                <div class="comparison-value">+18.3%</div>
+                                <div class="comparison-change positive">
+                                    <i class='bx bx-up-arrow-alt'></i>
+                                    vs. mes anterior
+                                </div>
+                            </div>
+                            
+                            <div class="comparison-card">
+                                <div class="comparison-header">
+                                    <h3 class="comparison-title">Tasa de Retención</h3>
+                                    <div class="stat-icon success">
+                                        <i class='bx bx-user-check'></i>
+                                    </div>
+                                </div>
+                                <div class="comparison-value">72.5%</div>
+                                <div class="comparison-change positive">
+                                    <i class='bx bx-up-arrow-alt'></i>
+                                    +2.1% vs. mes anterior
+                                </div>
+                            </div>
+                            
+                            <div class="content-section">
+                                <div class="section-header">
+                                    <h2 class="section-title">Top Comunidades</h2>
+                                </div>
+                                <ul class="top-list">
+                                    <li class="top-item">
+                                        <div class="top-rank">1</div>
+                                        <div class="top-info">
+                                            <div class="top-name">Cálculo Vectorial</div>
+                                            <div class="top-meta">35 miembros</div>
+                                        </div>
+                                        <div class="top-value">42 posts</div>
+                                    </li>
+                                    <li class="top-item">
+                                        <div class="top-rank">2</div>
+                                        <div class="top-info">
+                                            <div class="top-name">Diseño UX/UI</div>
+                                            <div class="top-meta">58 miembros</div>
+                                        </div>
+                                        <div class="top-value">38 posts</div>
+                                    </li>
+                                    <li class="top-item">
+                                        <div class="top-rank">3</div>
+                                        <div class="top-info">
+                                            <div class="top-name">Programación Web</div>
+                                            <div class="top-meta">42 miembros</div>
+                                        </div>
+                                        <div class="top-value">31 posts</div>
+                                    </li>
+                                    <li class="top-item">
+                                        <div class="top-rank">4</div>
+                                        <div class="top-info">
+                                            <div class="top-name">Seminario de Tesis</div>
+                                            <div class="top-meta">12 miembros</div>
+                                        </div>
+                                        <div class="top-value">28 posts</div>
+                                    </li>
+                                    <li class="top-item">
+                                        <div class="top-rank">5</div>
+                                        <div class="top-info">
+                                            <div class="top-name">Emprendimiento</div>
+                                            <div class="top-meta">24 miembros</div>
+                                        </div>
+                                        <div class="top-value">25 posts</div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Usuarios Stats Tab -->
+                <div class="tab-content" id="usuarios-tab">
+                    <div class="stats-grid-large">
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <div class="stat-title">Total de Usuarios</div>
+                                <div class="stat-icon primary">
+                                    <i class='bx bx-group'></i>
+                                </div>
+                            </div>
+                            <div class="stat-value">2,847</div>
+                            <div class="stat-change positive">
+                                <i class='bx bx-up-arrow-alt'></i>
+                                8.7% desde el mes pasado
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <div class="stat-title">Nuevos Registros (30 días)</div>
+                                <div class="stat-icon success">
+                                    <i class='bx bx-user-plus'></i>
+                                </div>
+                            </div>
+                            <div class="stat-value">184</div>
+                            <div class="stat-change positive">
+                                <i class='bx bx-up-arrow-alt'></i>
+                                12.2% vs. mes anterior
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <div class="stat-title">Usuarios Activos (7 días)</div>
+                                <div class="stat-icon primary">
+                                    <i class='bx bx-user-check'></i>
+                                </div>
+                            </div>
+                            <div class="stat-value">1,248</div>
+                            <div class="stat-change positive">
+                                <i class='bx bx-up-arrow-alt'></i>
+                                5.2% desde la semana pasada
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="content-grid">
+                        <div class="left-column">
+                            <div class="chart-container">
+                                <div class="chart-header">
+                                    <h2 class="chart-title">Crecimiento de Usuarios</h2>
+                                    <div class="chart-actions">
+                                        <button class="chart-action">
+                                            <i class='bx bx-dots-vertical-rounded'></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <canvas id="userGrowthChart"></canvas>
+                            </div>
+                        </div>
+                        
+                        <div class="right-column">
+                            <div class="content-section">
+                                <div class="section-header">
+                                    <h2 class="section-title">Distribución por Carrera</h2>
+                                </div>
+                                <canvas id="careerDistributionChart"></canvas>
+                            </div>
+                            
+                            <div class="content-section">
+                                <div class="section-header">
+                                    <h2 class="section-title">Usuarios Más Activos</h2>
+                                </div>
+                                <ul class="top-list">
+                                    <li class="top-item">
+                                        <div class="top-rank">1</div>
+                                        <div class="top-info">
+                                            <div class="top-name">Ana García</div>
+                                            <div class="top-meta">Ingeniería de Software</div>
+                                        </div>
+                                        <div class="top-value">142 posts</div>
+                                    </li>
+                                    <li class="top-item">
+                                        <div class="top-rank">2</div>
+                                        <div class="top-info">
+                                            <div class="top-name">Carlos Rodríguez</div>
+                                            <div class="top-meta">Sistemas Computacionales</div>
+                                        </div>
+                                        <div class="top-value">128 posts</div>
+                                    </li>
+                                    <li class="top-item">
+                                        <div class="top-rank">3</div>
+                                        <div class="top-info">
+                                            <div class="top-name">Marco Flores</div>
+                                            <div class="top-meta">Administración de Empresas</div>
+                                        </div>
+                                        <div class="top-value">115 posts</div>
+                                    </li>
+                                    <li class="top-item">
+                                        <div class="top-rank">4</div>
+                                        <div class="top-info">
+                                            <div class="top-name">Laura Hernández</div>
+                                            <div class="top-meta">Lic. Administración</div>
+                                        </div>
+                                        <div class="top-value">98 posts</div>
+                                    </li>
+                                    <li class="top-item">
+                                        <div class="top-rank">5</div>
+                                        <div class="top-info">
+                                            <div class="top-name">Diego Ramirez</div>
+                                            <div class="top-meta">Ing. Mecatrónica</div>
+                                        </div>
+                                        <div class="top-value">87 posts</div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contenido Stats Tab -->
+                <div class="tab-content" id="contenido-tab">
+                    <div class="stats-grid-large">
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <div class="stat-title">Total de Publicaciones</div>
+                                <div class="stat-icon primary">
+                                    <i class='bx bx-message-square'></i>
+                                </div>
+                            </div>
+                            <div class="stat-value">4,238</div>
+                            <div class="stat-change positive">
+                                <i class='bx bx-up-arrow-alt'></i>
+                                15.3% desde el mes pasado
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <div class="stat-title">Comentarios Totales</div>
+                                <div class="stat-icon success">
+                                    <i class='bx bx-comment-dots'></i>
+                                </div>
+                            </div>
+                            <div class="stat-value">12,847</div>
+                            <div class="stat-change positive">
+                                <i class='bx bx-up-arrow-alt'></i>
+                                18.7% vs. mes anterior
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <div class="stat-title">Interacciones (Me gusta)</div>
+                                <div class="stat-icon warning">
+                                    <i class='bx bx-heart'></i>
+                                </div>
+                            </div>
+                            <div class="stat-value">28,452</div>
+                            <div class="stat-change positive">
+                                <i class='bx bx-up-arrow-alt'></i>
+                                22.1% desde la semana pasada
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="content-grid">
+                        <div class="left-column">
+                            <div class="chart-container">
+                                <div class="chart-header">
+                                    <h2 class="chart-title">Actividad de Publicaciones</h2>
+                                    <div class="chart-actions">
+                                        <button class="chart-action">
+                                            <i class='bx bx-dots-vertical-rounded'></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <canvas id="postActivityChart"></canvas>
+                            </div>
+                        </div>
+                        
+                        <div class="right-column">
+                            <div class="content-section">
+                                <div class="section-header">
+                                    <h2 class="section-title">Publicaciones Más Populares</h2>
+                                </div>
+                                <ul class="top-list">
+                                    <li class="top-item">
+                                        <div class="top-rank">1</div>
+                                        <div class="top-info">
+                                            <div class="top-name">Hackathon de Programación</div>
+                                            <div class="top-meta">Por Carlos Rodríguez</div>
+                                        </div>
+                                        <div class="top-value">142 likes</div>
+                                    </li>
+                                    <li class="top-item">
+                                        <div class="top-rank">2</div>
+                                        <div class="top-info">
+                                            <div class="top-name">Grupo de Estudio Cálculo</div>
+                                            <div class="top-meta">Por Ana García</div>
+                                        </div>
+                                        <div class="top-value">128 likes</div>
+                                    </li>
+                                    <li class="top-item">
+                                        <div class="top-rank">3</div>
+                                        <div class="top-info">
+                                            <div class="top-name">Venta de Mangos con Chile</div>
+                                            <div class="top-meta">Por Marco Flores</div>
+                                        </div>
+                                        <div class="top-value">115 likes</div>
+                                    </li>
+                                    <li class="top-item">
+                                        <div class="top-rank">4</div>
+                                        <div class="top-info">
+                                            <div class="top-name">Conferencia de IA</div>
+                                            <div class="top-meta">Por Laura Hernández</div>
+                                        </div>
+                                        <div class="top-value">98 likes</div>
+                                    </li>
+                                    <li class="top-item">
+                                        <div class="top-rank">5</div>
+                                        <div class="top-info">
+                                            <div class="top-name">Proyecto de Robótica</div>
+                                            <div class="top-meta">Por Diego Ramirez</div>
+                                        </div>
+                                        <div class="top-value">87 likes</div>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div class="content-section">
+                                <div class="section-header">
+                                    <h2 class="section-title">Etiquetas Más Utilizadas</h2>
+                                </div>
+                                <div class="post-tags" style="margin-top: 15px;">
+                                    <span class="post-tag">#Programación</span>
+                                    <span class="post-tag">#Estudio</span>
+                                    <span class="post-tag">#Emprendimiento</span>
+                                    <span class="post-tag">#Tecnología</span>
+                                    <span class="post-tag">#Eventos</span>
+                                    <span class="post-tag">#Cálculo</span>
+                                    <span class="post-tag">#Diseño</span>
+                                    <span class="post-tag">#Ingeniería</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Eventos Stats Tab -->
+                <div class="tab-content" id="eventos-tab">
+                    <div class="stats-grid-large">
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <div class="stat-title">Eventos Activos</div>
+                                <div class="stat-icon primary">
+                                    <i class='bx bx-calendar'></i>
+                                </div>
+                            </div>
+                            <div class="stat-value">8</div>
+                            <div class="stat-change positive">
+                                <i class='bx bx-up-arrow-alt'></i>
+                                3 nuevos esta semana
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <div class="stat-title">Total de Asistentes</div>
+                                <div class="stat-icon success">
+                                    <i class='bx bx-user-check'></i>
+                                </div>
+                            </div>
+                            <div class="stat-value">427</div>
+                            <div class="stat-change positive">
+                                <i class='bx bx-up-arrow-alt'></i>
+                                45% vs. mes anterior
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <div class="stat-title">Eventos Próximos</div>
+                                <div class="stat-icon warning">
+                                    <i class='bx bx-time'></i>
+                                </div>
+                            </div>
+                            <div class="stat-value">5</div>
+                            <div class="stat-change positive">
+                                <i class='bx bx-up-arrow-alt'></i>
+                                2 nuevos confirmados
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="content-grid">
+                        <div class="left-column">
+                            <div class="chart-container">
+                                <div class="chart-header">
+                                    <h2 class="chart-title">Asistencia a Eventos</h2>
+                                    <div class="chart-actions">
+                                        <button class="chart-action">
+                                            <i class='bx bx-dots-vertical-rounded'></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <canvas id="eventAttendanceChart"></canvas>
+                            </div>
+                        </div>
+                        
+                        <div class="right-column">
+                            <div class="content-section">
+                                <div class="section-header">
+                                    <h2 class="section-title">Próximos Eventos</h2>
+                                </div>
+                                <ul class="top-list">
+                                    <li class="top-item">
+                                        <div class="top-info">
+                                            <div class="top-name">Feria de TICs</div>
+                                            <div class="top-meta">20 Oct • 10:00 AM</div>
+                                        </div>
+                                        <div class="top-value">124 asistentes</div>
+                                    </li>
+                                    <li class="top-item">
+                                        <div class="top-info">
+                                            <div class="top-name">Conferencia Día de la Mujer</div>
+                                            <div class="top-meta">5 Nov • 4:00 PM</div>
+                                        </div>
+                                        <div class="top-value">87 asistentes</div>
+                                    </li>
+                                    <li class="top-item">
+                                        <div class="top-info">
+                                            <div class="top-name">Hackathon de Programación</div>
+                                            <div class="top-meta">12 Nov • 9:00 AM</div>
+                                        </div>
+                                        <div class="top-value">203 asistentes</div>
+                                    </li>
+                                    <li class="top-item">
+                                        <div class="top-info">
+                                            <div class="top-name">Feria de Emprendimiento</div>
+                                            <div class="top-meta">18 Nov • 11:00 AM</div>
+                                        </div>
+                                        <div class="top-value">65 asistentes</div>
+                                    </li>
+                                    <li class="top-item">
+                                        <div class="top-info">
+                                            <div class="top-name">Concierto de Fin de Semestre</div>
+                                            <div class="top-meta">15 Dic • 7:00 PM</div>
+                                        </div>
+                                        <div class="top-value">312 asistentes</div>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div class="content-section">
+                                <div class="section-header">
+                                    <h2 class="section-title">Eventos por Categoría</h2>
+                                </div>
+                                <canvas id="eventCategoryChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+   <!--  <script>
+        // Tab functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.stats-tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Remove active class from all tabs and contents
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked tab and corresponding content
+                    tab.classList.add('active');
+                    const tabId = tab.getAttribute('data-tab');
+                    document.getElementById(`${tabId}-tab`).classList.add('active');
+                });
+            });
+            
+            // Initialize charts
+            initializeCharts();
+        });
+        
+        function initializeCharts() {
+            // User Activity Chart
+            const userActivityCtx = document.getElementById('userActivityChart').getContext('2d');
+            new Chart(userActivityCtx, {
+                type: 'line',
+                data: {
+                    labels: ['1 Oct', '5 Oct', '10 Oct', '15 Oct', '20 Oct', '25 Oct', '30 Oct'],
+                    datasets: [{
+                        label: 'Usuarios Activos',
+                        data: [850, 920, 980, 1050, 1120, 1180, 1248],
+                        borderColor: '#8B0000',
+                        backgroundColor: 'rgba(139, 0, 0, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }, {
+                        label: 'Nuevos Registros',
+                        data: [45, 52, 48, 60, 55, 58, 62],
+                        borderColor: '#10b981',
+                        backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        }
+                    }
+                }
+            });
+            
+            // Category Distribution Chart
+            const categoryDistributionCtx = document.getElementById('categoryDistributionChart').getContext('2d');
+            new Chart(categoryDistributionCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Académico', 'Social', 'Emprendimiento', 'Eventos', 'Tecnología'],
+                    datasets: [{
+                        data: [35, 20, 15, 18, 12],
+                        backgroundColor: [
+                            '#8B0000',
+                            '#f59e0b',
+                            '#10b981',
+                            '#3b82f6',
+                            '#8b5cf6'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                        }
+                    }
+                }
+            });
+            
+            // User Growth Chart
+            const userGrowthCtx = document.getElementById('userGrowthChart').getContext('2d');
+            new Chart(userGrowthCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct'],
+                    datasets: [{
+                        label: 'Usuarios Totales',
+                        data: [1200, 1350, 1520, 1680, 1850, 2030, 2240, 2450, 2650, 2847],
+                        backgroundColor: '#8B0000'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+            
+            // Career Distribution Chart
+            const careerDistributionCtx = document.getElementById('careerDistributionChart').getContext('2d');
+            new Chart(careerDistributionCtx, {
+                type: 'pie',
+                data: {
+                    labels: ['Ing. Software', 'Sistemas', 'Administración', 'Mecatrónica', 'Otras'],
+                    datasets: [{
+                        data: [32, 28, 18, 12, 10],
+                        backgroundColor: [
+                            '#8B0000',
+                            '#f59e0b',
+                            '#10b981',
+                            '#3b82f6',
+                            '#8b5cf6'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                        }
+                    }
+                }
+            });
+            
+            // Post Activity Chart
+            const postActivityCtx = document.getElementById('postActivityChart').getContext('2d');
+            new Chart(postActivityCtx, {
+                type: 'line',
+                data: {
+                    labels: ['1 Oct', '5 Oct', '10 Oct', '15 Oct', '20 Oct', '25 Oct', '30 Oct'],
+                    datasets: [{
+                        label: 'Publicaciones',
+                        data: [120, 135, 142, 155, 148, 160, 172],
+                        borderColor: '#8B0000',
+                        backgroundColor: 'rgba(139, 0, 0, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }, {
+                        label: 'Comentarios',
+                        data: [350, 420, 480, 520, 580, 620, 680],
+                        borderColor: '#10b981',
+                        backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        }
+                    }
+                }
+            });
+            
+            // Event Attendance Chart
+            const eventAttendanceCtx = document.getElementById('eventAttendanceChart').getContext('2d');
+            new Chart(eventAttendanceCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Feria TIC', 'Hackathon', 'Conferencia', 'Taller UX', 'Concierto'],
+                    datasets: [{
+                        label: 'Asistentes',
+                        data: [124, 203, 87, 45, 312],
+                        backgroundColor: '#8B0000'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+            
+            // Event Category Chart
+            const eventCategoryCtx = document.getElementById('eventCategoryChart').getContext('2d');
+            new Chart(eventCategoryCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Académico', 'Cultural', 'Deportivo', 'Tecnológico', 'Social'],
+                    datasets: [{
+                        data: [35, 25, 15, 18, 7],
+                        backgroundColor: [
+                            '#8B0000',
+                            '#f59e0b',
+                            '#10b981',
+                            '#3b82f6',
+                            '#8b5cf6'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                        }
+                    }
+                }
+            });
+        }
+    </script> -->
+</body>
+</html>
